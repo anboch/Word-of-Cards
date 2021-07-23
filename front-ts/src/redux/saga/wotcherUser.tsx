@@ -2,7 +2,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import {fetchLoginUserSaga} from './fetch/fetchLoginUserSaga'
 import {fetchAddUserSaga} from './fetch/fetchAddUserSaga'
 import {addUserAC} from '../ActionCreators/User/addUserAC'
-
+import {ActionUserType} from '../types/actionUser'
 //add user
 export function* workerAddUser (action:{type:string,payload:{login:string,email:string,password:string}}) {
  
@@ -21,6 +21,7 @@ export function* workerLoginUser (action:{type:string,payload:{login:string,pass
     const {_id,login,email,password} = yield call(fetchLoginUserSaga,action.payload)
     if(_id){
     yield put(addUserAC(_id,login,email,password));
+    window.location.href="/account"
     }else{
       alert(' Такой пользователь не зарегестрирован!')
     }
