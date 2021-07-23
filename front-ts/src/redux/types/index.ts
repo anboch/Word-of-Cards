@@ -8,7 +8,11 @@ export interface User {
 }
 
 export interface State {
-userReducer:{
-  user:User
+  deckReducer: {
+    allDecks: AllDecksType;
+  };
+  userReducer: {
+    user: User;
+  };
 }
-}
+

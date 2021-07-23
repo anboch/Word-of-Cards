@@ -19,6 +19,6 @@ export const userReducer = (userReducer:State['userReducer']=init, action:Action
      
  
     default:
-      return state;
+      return userReducer;
   }
 };
