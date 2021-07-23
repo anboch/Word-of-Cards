@@ -1,29 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom'
-import {rootReducer} from './redux/Reducers/rootReducer'
-import App from './Components/App/App';
-import createSagaMiddleware from "redux-saga";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './redux/reducers/rootReducer';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
+import { deckWatcher } from './redux/saga/deckWatcher';
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from 'redux-thunk';
 import {wotcher} from './redux/saga/wotcherUser'
 
 const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware,thunk))
+  composeWithDevTools(applyMiddleware(sagaMiddleware,logger))
 );
-sagaMiddleware.run(wotcher);
+
+sagaMiddleware.run(deckWatcher, wotcher);
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={store}> 
-     <BrowserRouter>
-    <App />
-    </BrowserRouter> 
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
