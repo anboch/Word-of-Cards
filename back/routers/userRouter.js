@@ -32,7 +32,7 @@ router
     if (login && password) {
       const loginUser = await User.findOne({ login, password });
       if (loginUser) {
-        res.status(200).json(newUser);
+        res.status(200).json(loginUser);
       } else {
         res.status(200).json({ userInBase: false });
       }

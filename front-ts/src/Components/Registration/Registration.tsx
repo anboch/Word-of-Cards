@@ -3,8 +3,10 @@ import "./Registration.css";
 import { useDispatch} from "react-redux";
 import {addUserSagaAC} from '../../redux/ActionCreators/User/addUserAC'
 import {useForm} from 'react-hook-form'
+import {useHistory} from 'react-router-dom'
 
 function Registration() {
+  const history = useHistory()
 const {register,handleSubmit} = useForm()
 const dispatch = useDispatch()
 
@@ -14,7 +16,7 @@ const dispatch = useDispatch()
      const  email = event.email
        const password = event.password
        dispatch(addUserSagaAC(login,email,password))
-       
+       history.push('/account')
   }
 
   return (
