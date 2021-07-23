@@ -5,7 +5,7 @@ import Deck from './Deck';
 
 export default function DeckList() {
   const allDecks = useSelector((state: State) => {
-    return state.deckReducer.allDecks;
+    return state.allDecks;
   });
 
   return (
