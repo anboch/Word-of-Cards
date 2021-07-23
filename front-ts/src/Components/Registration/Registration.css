@@ -1,0 +1,10 @@
+.divRegistration {
+  border: 3px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  background-color: cornflowerblue;
+  max-width: 500px;
+  border-radius: 20px;
+}
