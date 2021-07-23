@@ -5,4 +5,6 @@ export interface User {
   password: string;
 }
 
-export interface State {}
+export interface State {
+  user:User
+}

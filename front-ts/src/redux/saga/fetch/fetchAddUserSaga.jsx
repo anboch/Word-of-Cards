@@ -1,4 +1,4 @@
-export const fetAddUserSaga = async ({ login, email, password }) => {
+export const fetchAddUserSaga = async ({ login, email, password }) => {
 
     const res = await fetch("http://localhost:2224/user/signup", {
       method: "POST",
@@ -6,5 +6,6 @@ export const fetAddUserSaga = async ({ login, email, password }) => {
       body: JSON.stringify({ login, email, password }),
     });
     const data = res.json();
+    console.log(data)
     return data;
   };
