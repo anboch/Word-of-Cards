@@ -3,7 +3,7 @@ import {ActionsUser} from '../ActionCreators/User/indexAC'
 import {State, User} from '../types/index'
 
 const init:State={
-  userReducer:{user:{_id:'gg',login:'tt',email:"", password:''}}
+ user:{_id:'gg',login:'tt',email:"", password:''}
 }
 
 export const userReducer = (state:State=init, action:ActionsUser) => {
@@ -16,7 +16,7 @@ export const userReducer = (state:State=init, action:ActionsUser) => {
         email:action.payload.email,
         password:action.payload.password
       }
-      return { ...state,userReducer:{... userReducer,user:newUser} };
+      return { ...state,user:newUser };
       case "LOGIN_USER":
         return {  };
  

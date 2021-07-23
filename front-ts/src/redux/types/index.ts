@@ -6,6 +6,5 @@ export interface User {
 }
 
 export interface State {
-  userReducer:{user:User}
-
+  user:User
 }
