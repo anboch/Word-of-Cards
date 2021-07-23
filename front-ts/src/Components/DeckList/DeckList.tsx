@@ -11,7 +11,7 @@ export default function DeckList() {
     <div>
       {state.deckReducer.allDecks.map((deck) => (
         <Deck key={deck._id} deck={deck} />
-      ))}
+      ))} 
     </div>
   );
 }

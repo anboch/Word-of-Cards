@@ -19,7 +19,7 @@ export function* workerLoginUser (action:{type:string,payload:{login:string,pass
  
   try {
     const {_id,login,email,password} = yield call(fetchLoginUserSaga,action.payload)
-    if(_id){
+    if(login){
     yield put(addUserAC(_id,login,email,password));
     window.location.href="/account"
     }else{

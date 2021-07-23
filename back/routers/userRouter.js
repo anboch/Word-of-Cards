@@ -41,12 +41,6 @@ router
     }
   });
 
-// router
-// .route("/logout")
-// .get(async (req, res) => {
-//   const todos = await Todo.find();
-//   res.status(200).json(todos);
-// })
 
 // .post(async (req, res) => {
 //   const { login, email, password } = req.body;
@@ -57,13 +51,6 @@ router
 //     res.status(400).json({ createTodo: false });
 //   }
 // })
-// .delete(async (req,res) => {
-//   const delTodo = await Todo.findByIdAndDelete(req.body.id)
-//   if(delTodo){
-//     res.status(200).json(delTodo)
-//   } else {
-//     res.status(400).json({delete:false})
-//   }
 // })
 
 //  .put(async(req,res) => {
