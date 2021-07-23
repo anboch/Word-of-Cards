@@ -1,26 +1,30 @@
 import React from "react";
 import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
-import {loginUserSagaAC} from '../../redux/ActionCreators'
+import {loginUserSagaAC} from '../../redux/ActionCreators/User/loginUserAC'
+import {useForm} from 'react-hook-form'
 
-function Login(props) {
+function Login() {
+  const {register,handleSubmit} = useForm()
 const dispatch = useDispatch()
-const loginUser = (event) => {
-  event.preventDefault()
-const login = event.target.login.value
-const password = event.target.password.value
-dispatch(loginUserSagaAC({login,password}))
+
+const loginUser = (event:{login:string,password:string}) => {
+
+const login = event.login
+const password = event.password
+dispatch(loginUserSagaAC(login,password))
 }
 
   return (
     <div className="divLogin">
-      <form onSubmit={loginUser}>
+      <form onSubmit={handleSubmit(loginUser)}>
         <div className="row mb-3">
-          <label for="inputEmail3" className="col-sm-2 col-form-label">
+          <label  className="col-sm-2 col-form-label">
             Login
           </label>
           <div style={{ maxWidth: "400px" }} className="col-sm-10">
             <input
+            {...register('login')}
               required
               name="login"
               type="string"
@@ -30,11 +34,12 @@ dispatch(loginUserSagaAC({login,password}))
           </div>
         </div>
         <div className="row mb-2">
-          <label for="inputPassword3" className="col-sm-2 col-form-label">
+          <label  className="col-sm-2 col-form-label">
             Password
           </label>
           <div style={{ maxWidth: "400px" }} className="col-sm-10">
             <input
+            {...register('password')}
               required
               name="password"
               type="password"

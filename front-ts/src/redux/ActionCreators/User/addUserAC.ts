@@ -1,10 +1,17 @@
-import { ActionUserType } from "../../types/actionUser";
+import {addUserAction,addUserSagaAction} from "./indexAC";
 
-interface ActionUser {
-  type:ActionUserType
-}
+export const addUserAC = (_id: string,login:string,
+  email:string,password:string): addUserAction => ({
+  type: "ADD_USER",
+  payload: {
+   _id,login,email,password
+  },
+});
 
-export interface addUserAction extends ActionUser{
-  type:"ADD_USER";
-  payload: {description:string}
-}
+export const addUserSagaAC = (login:string,
+  email:string,password:string): addUserSagaAction => ({
+  type: "ADD_USER_SAGA",
+  payload: {
+   login,email,password
+  },
+});

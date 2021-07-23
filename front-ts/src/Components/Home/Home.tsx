@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link, Route, Switch} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './Home.css'
 
-function Home(props) {
+function Home() {
   return (
     <div className='divBigHome'>
       <div>

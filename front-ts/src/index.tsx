@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk';
-import {wotcher} from './redux/saga/wotcher'
+import {wotcher} from './redux/saga/wotcherUser'
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

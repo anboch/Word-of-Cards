@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Game(props) {
+function Game(props:any) {
   return (
     <div>
       Game

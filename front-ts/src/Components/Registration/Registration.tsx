@@ -1,30 +1,31 @@
 import React from "react";
 import "./Registration.css";
-import { useDispatch, useSelector } from "react-redux";
-import {addUserSagaAC} from '../../redux/ActionCreators'
+import { useDispatch} from "react-redux";
+import {addUserSagaAC} from '../../redux/ActionCreators/User/addUserAC'
+import {useForm} from 'react-hook-form'
 
-function Registration(props) {
-
+function Registration() {
+const {register,handleSubmit} = useForm()
 const dispatch = useDispatch()
 
-  const handlerUser = (event) => {
-    event.preventDefault()
-    const login = event.target.login.value
-     const  email = event.target.email.value
-       const password = event.target.password.value
-       dispatch(addUserSagaAC({login,email,password}))
+  const handlerUser = (event:any) => {
+    // event.preventDefault()
+    const login = event.login
+     const  email = event.email
+       const password = event.password
+       dispatch(addUserSagaAC(login,email,password))
        
   }
 
   return (
     <div className="divRegistration">
-      <form onSubmit={handlerUser}>
+      <form onSubmit={handleSubmit(handlerUser)}>
         <div className="row mb-3">
-          <label for="inputEmail3" className="col-sm-2 col-form-label">
+          <label  className="col-sm-2 col-form-label">
             Login
           </label>
           <div style={{ maxWidth: "400px" }} className="col-sm-10">
-            <input
+            <input {...register('login')}
               required
               name="login"
               type="string"
@@ -34,11 +35,11 @@ const dispatch = useDispatch()
           </div>
         </div>
         <div className="row mb-3">
-          <label for="inputEmail3" className="col-sm-2 col-form-label">
+          <label  className="col-sm-2 col-form-label">
             Email
           </label>
           <div style={{ maxWidth: "400px" }} className="col-sm-10">
-            <input
+            <input {...register('email')}
               required
               name="email"
               type="email"
@@ -48,11 +49,11 @@ const dispatch = useDispatch()
           </div>
         </div>
         <div className="row mb-2">
-          <label for="inputPassword3" className="col-sm-2 col-form-label">
+          <label  className="col-sm-2 col-form-label">
             Password
           </label>
           <div style={{ maxWidth: "400px" }} className="col-sm-10">
-            <input
+            <input {...register('password')}
               required
               name="password"
               type="password"

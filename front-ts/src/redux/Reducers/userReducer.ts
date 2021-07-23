@@ -1,16 +1,24 @@
 
+import {ActionsUser} from '../ActionCreators/User/indexAC'
+import {State, User} from '../types/index'
 
-
-const initialStateUser = {
-  user:{}
+const init:State={
+  userReducer:{user:{_id:'gg',login:'tt',email:"", password:''}}
 }
 
-export const userReducer = (state = initialStateUser, action) => {
+export const userReducer = (state:State=init, action:ActionsUser) => {
   switch (action.type) {
-    case "INIT_USER":
-      return {  };
+  
     case "ADD_USER":
-      return {  };
+      const newUser: User = {
+        _id:action.payload._id,
+        login:action.payload.login,
+        email:action.payload.email,
+        password:action.payload.password
+      }
+      return { ...state,userReducer:{... userReducer,user:newUser} };
+      case "LOGIN_USER":
+        return {  };
  
     default:
       return state;
