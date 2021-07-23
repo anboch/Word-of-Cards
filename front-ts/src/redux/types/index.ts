@@ -9,4 +9,5 @@ export interface User {
 
 export interface State {
   allDecks: AllDecksType;
+  user:User
 }
