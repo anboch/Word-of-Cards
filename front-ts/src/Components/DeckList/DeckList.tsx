@@ -5,14 +5,14 @@ import Deck from '../Deck/Deck';
 
 export default function DeckList() {
   const allDecks = useSelector((state: State) => {
-    return state.allDecks;
+    // return state.allDecks;
   });
 
   return (
     <div>
-      {allDecks?.map((deck) => (
+      {/* {allDecks?.map((deck) => (
         <Deck key={deck._id} deck={deck} />
-      ))}
+      ))} */}
     </div>
   );
 }

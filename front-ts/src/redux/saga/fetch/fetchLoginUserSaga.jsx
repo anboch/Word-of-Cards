@@ -9,6 +9,6 @@ export const fetchLoginUserSaga = async ({ login, password }) => {
     body: JSON.stringify({ login, password }),
   });
   const data = res.json();
-  console.log(data)
+ 
   return data;
 };
