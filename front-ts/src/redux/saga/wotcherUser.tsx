@@ -2,7 +2,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import {fetchLoginUserSaga} from './fetch/fetchLoginUserSaga'
 import {fetchAddUserSaga} from './fetch/fetchAddUserSaga'
 import {addUserAC} from '../ActionCreators/User/addUserAC'
-
+import {ActionUserType} from '../types/actionUser'
 //add user
 export function* workerAddUser (action:{type:string,payload:{login:string,email:string,password:string}}) {
  

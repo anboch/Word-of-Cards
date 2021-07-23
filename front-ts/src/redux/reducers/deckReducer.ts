@@ -1,20 +1,18 @@
 import { State } from '../types/index';
 import { DeckActions } from '../types/deck/deckActionTypes';
+import { AllDecksType } from '../types/deck/deckTypes';
 
-const init: State = {
-  allDecks: [],
-};
+const init: State['allDecks'] =[]
 
 export const deckReducer = (
-  state: State = init,
+  state: State['allDecks']  = init,
   action: DeckActions
-): State => {
+): State['allDecks'] => {
   switch (action.type) {
     case 'DOWNLOAD_DECKS':
-      return {
-        ...state,
-        allDecks: action.payload,
-      };
+const allDecksPayload: AllDecksType = action.payload
+      return allDecksPayload
+      
     default:
       return state;
   }

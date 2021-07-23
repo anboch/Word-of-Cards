@@ -2,11 +2,11 @@
 import {ActionsUser} from '../ActionCreators/User/indexAC'
 import {State, User} from '../types/index'
 
-const init:State={
- user:{_id:'gg',login:'tt',email:"", password:''}
-}
+const init:State['user']=
+ {_id:'gg',login:'tt',email:"", password:''}
 
-export const userReducer = (state:State=init, action:ActionsUser) => {
+
+export const userReducer = (state:State['user']=init, action:ActionsUser) => {
   switch (action.type) {
   
     case "ADD_USER":
