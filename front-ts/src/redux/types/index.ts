@@ -1,3 +1,5 @@
+import { AllDecksType } from '../types/deck/deckTypes';
+
 export interface User {
   _id: string;
   login: string;
@@ -5,4 +7,6 @@ export interface User {
   password: string;
 }
 
-export interface State {}
+export interface State {
+  deckReducer: { allDecks: AllDecksType };
+}
