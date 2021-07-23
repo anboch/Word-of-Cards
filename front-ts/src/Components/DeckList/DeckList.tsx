@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { State } from '../redux/types';
-import Deck from './Deck';
+import { State } from '../../redux/types';
+import Deck from '../Deck/Deck';
 
 export default function DeckList() {
   const allDecks = useSelector((state: State) => {
