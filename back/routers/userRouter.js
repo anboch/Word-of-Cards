@@ -30,9 +30,9 @@ router
   .post(async (req, res) => {
     const { login, password } = req.body;
     if (login && password) {
-      const loginUser = await User.findOne({ login, password });
+      const loginUser = await User.findOne({'login': login,'password': password });
       if (loginUser) {
-        res.status(200).json(newUser);
+        res.status(200).json(loginUser);
       } else {
         res.status(200).json({ userInBase: false });
       }
