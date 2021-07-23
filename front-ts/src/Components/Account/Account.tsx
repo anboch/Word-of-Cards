@@ -1,15 +1,18 @@
-import React from 'react';
-import { useSelector} from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import DeckList from '../DeckList/DeckList';
+import { downloadDecksSagaAC } from '../../redux/ActionCreators/deck/downloadDeckAC';
 
-function Account() {
-  const login = useSelector(state => state)
- 
+export default function Account() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const action = downloadDecksSagaAC();
+    dispatch(action);
+  }, [dispatch]);
   return (
     <div>
-      Account
-      {/* <h1>HELLO {state.userReducer.user.login}</h1> */}
+      <DeckList />
     </div>
   );
 }
-
-export default Account;

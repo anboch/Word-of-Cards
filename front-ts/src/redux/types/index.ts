@@ -1,3 +1,5 @@
+import { AllDecksType } from '../types/deck/deckTypes';
+
 export interface User {
   _id: string;
   login: string;
@@ -6,5 +8,6 @@ export interface User {
 }
 
 export interface State {
+  allDecks: AllDecksType;
   user:User
 }

@@ -1,13 +1,10 @@
-import "./App.css";
-import {
-  Route,
-  Switch
-} from "react-router-dom";
-import Registration from "../Registration/Registration";
-import Login from "../Login/Login";
-import Home from "../Home/Home";
-import Game from "../Game/Game";
-import Account from "../Account/Account";
+import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Registration from '../Registration/Registration';
+import Login from '../Login/Login';
+import Home from '../Home/Home';
+import Game from '../Game/Game';
+import Account from '../Account/Account';
 
 function App() {
   return (
@@ -16,7 +13,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        
+
         <Route exact path="/signup">
           <Registration />
         </Route>
@@ -32,7 +29,6 @@ function App() {
         <Route exact path="/account">
           <Account />
         </Route>
-
       </Switch>
     </div>
   );
