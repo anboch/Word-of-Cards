@@ -8,5 +8,5 @@ export interface User {
 }
 
 export interface State {
-  deckReducer: { allDecks: AllDecksType };
+  allDecks: AllDecksType;
 }

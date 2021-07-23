@@ -2,7 +2,7 @@ import { State } from '../types/index';
 import { DeckActions } from '../types/deck/deckActionTypes';
 
 const init: State = {
-  deckReducer: { allDecks: [] },
+  allDecks: [],
 };
 
 export const deckReducer = (
@@ -13,7 +13,7 @@ export const deckReducer = (
     case 'DOWNLOAD_DECKS':
       return {
         ...state,
-        deckReducer: { ...state.deckReducer, allDecks: action.payload },
+        allDecks: action.payload,
       };
     default:
       return state;
