@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import './Home.css'
 import useSound from 'use-sound'
-// import musicGrom from '../../volue/molniya.mp3'
+// import musicGrom from '../../volue/mol.mp3'
 
 function Home() {
   // const [playGrom] = useSound(
@@ -24,6 +24,7 @@ function Home() {
       </div>
       </div>
       <h1 className="animate__animated animate__zoomIn" style={{color:'blue', fontSize:'100px'}}> WORD OF CARDS </h1>
+      <img className='imgCard' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTuitO9okI8ivWCp8av0D1XCJ4ZXcH2tB3ug&usqp=CAU'/>
     </div>
   );
 }
