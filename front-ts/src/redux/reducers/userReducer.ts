@@ -7,13 +7,14 @@ const init:State['userReducer']={user:{_id:'',login:"",email:"",password:""}}
 
 export const userReducer = (userReducer:State['userReducer']=init, action:ActionsUser) => {
   switch (action.type) {
-  
+ 
     case "ADD_USER":
       const newUser: User = {
         _id:action.payload._id,
         login:action.payload.login,
         email:action.payload.email,
         password:action.payload.password
+        
       }
       return { ...userReducer,user:newUser };
      

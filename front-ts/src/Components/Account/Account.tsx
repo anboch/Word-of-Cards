@@ -3,6 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import DeckList from '../DeckList/DeckList';
 import { downloadDecksSagaAC } from '../../redux/ActionCreators/deck/downloadDeckAC';
 import {State} from '../../redux/types/index'
+import { Link } from 'react-router-dom';
 export default function Account() {
   const state = useSelector((state:State) => state)
   const dispatch = useDispatch();
@@ -13,7 +14,8 @@ export default function Account() {
   }, [dispatch]);
   return (
     <div>
-       <h3>{JSON.stringify(state)}</h3>
+      <button onClick={()=>window.location.href="/"}>🔙 Logout</button>
+       <h3 className='animate__animated animate__zoomInUp'>HELLO {state.userReducer.user.login.toUpperCase()}!</h3>
       <DeckList />
     </div>
   );
