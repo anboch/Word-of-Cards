@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const deckSchema = new Schema({
+  title: { type: String },
   private: {
     type: Boolean,
     default: true,

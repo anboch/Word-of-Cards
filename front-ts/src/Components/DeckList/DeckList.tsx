@@ -1,4 +1,4 @@
-import React from 'react';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { State } from '../../redux/types';
 import Deck from '../Deck/Deck';
@@ -9,9 +9,14 @@ export default function DeckList() {
 
   return (
     <div>
-      {state.deckReducer.allDecks.map((deck) => (
-        <Deck key={deck._id} deck={deck} />
-      ))} 
+      <Container
+        className="d-flex justify-content-around flex-wrap"
+        style={{ paddingTop: '2rem', minWidth: '20rem' }}
+      >
+        {state.deckReducer.allDecks.map((deck) => (
+          <Deck key={deck._id} deck={deck} />
+        ))}
+      </Container>
     </div>
   );
 }

@@ -47,6 +47,45 @@ router.route('/all').get(async (req, res) => {
     // return res.json({ sortedByReadyForStudyCard });
     const allDecks = [
       {
+        title: 'Страны и столицы',
+        private: true,
+        userId: 'userIdExample',
+        cards: [
+          {
+            question: 'question1Example',
+            answer: 'answer1Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 1,
+          },
+          {
+            question: 'question2Example',
+            answer: 'answer2Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 2,
+          },
+        ],
+      },
+      {
+        title: 'Страны и столицы',
+        private: true,
+        userId: 'userIdExample',
+        cards: [
+          {
+            question: 'question1Example',
+            answer: 'answer1Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 1,
+          },
+          {
+            question: 'question2Example',
+            answer: 'answer2Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 2,
+          },
+        ],
+      },
+      {
+        title: 'Страны и столицы',
         private: true,
         userId: 'userIdExample',
         cards: [
