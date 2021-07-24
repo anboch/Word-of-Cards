@@ -22,13 +22,14 @@ export default function Deck({ deck }: { deck: DeckType }) {
                 </Card.Text> */}
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>368 карт</ListGroupItem>
-          <ListGroupItem>25 в изучении</ListGroupItem>
-          <ListGroupItem>215 выучено</ListGroupItem>
+          <ListGroupItem>30/200 выучено</ListGroupItem>
+          <ListGroupItem>50 на запоминании</ListGroupItem>
+          <ListGroupItem>25 готовы к повторению</ListGroupItem>
           <ListGroupItem>
             <ProgressBar>
-              <ProgressBar variant="success" now={65} key={1} />
-              <ProgressBar variant="warning" now={20} key={2} />
+              <ProgressBar variant="success" now={15} key={1} />
+              <ProgressBar variant="info" now={25} key={2} />
+              <ProgressBar variant="warning" now={12} key={2} />
             </ProgressBar>
           </ListGroupItem>
           <ListGroupItem>

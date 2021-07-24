@@ -41,10 +41,10 @@ router.route('/newCard').post(async (req, res) => {
 router.route('/all').get(async (req, res) => {
   try {
     // заглушку убрать!
-    // const sortedByReadyForStudyCard = await Deck.sortByReadyForStudyCard(
+    // const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
     //   req.session.userId
     // );
-    // return res.json({ sortedByReadyForStudyCard });
+    // return res.json({ decksWithClusteredCards });
     const allDecks = [
       {
         title: 'Страны и столицы',
