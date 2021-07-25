@@ -6,7 +6,7 @@ const deckSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  // userId: { type: Schema.Types.ObjectId, ref: 'User' },
   cards: {
     type: Array,
     default: [],
