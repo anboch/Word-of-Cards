@@ -31,9 +31,8 @@ export function* workerLoginUser(action: {
     );
     if (login) {
       yield put(addUserAC(_id, login, email, password));
-      window.location.href = '/account';
     } else {
-      alert(' Такой пользователь не зарегестрирован!');
+      alert('Такой пользователь не зарегестрирован!');
     }
   } catch (e) {
     yield put({ type: 'error', message: e.message });

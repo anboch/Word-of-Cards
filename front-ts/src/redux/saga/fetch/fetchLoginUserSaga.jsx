@@ -7,7 +7,5 @@ export const fetchLoginUserSaga = async ({ login, password }) => {
     body: JSON.stringify({ login, password }),
   });
   const data = await res.json();
-
-  console.log('data:', data);
   return data;
 };
