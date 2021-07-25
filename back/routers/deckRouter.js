@@ -39,72 +39,74 @@ router.route('/newCard').post(async (req, res) => {
 // Показать все доски юзера
 // isLogin добавить!
 router.route('/all').get(async (req, res) => {
+  console.log('req.session', req.session);
   try {
     // заглушку убрать!
     // const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
-    //   req.session.userId
+    //   req.session.user._id
     // );
+    // console.log('decksWithClusteredCards:', decksWithClusteredCards);
     // return res.json({ decksWithClusteredCards });
-    const allDecks = [
-      {
-        title: 'Страны и столицы',
-        private: true,
-        userId: 'userIdExample',
-        cards: [
-          {
-            question: 'question1Example',
-            answer: 'answer1Example',
-            lastAnswerDate: new Date(),
-            levelOfStudy: 1,
-          },
-          {
-            question: 'question2Example',
-            answer: 'answer2Example',
-            lastAnswerDate: new Date(),
-            levelOfStudy: 2,
-          },
-        ],
-      },
-      {
-        title: 'Страны и столицы',
-        private: true,
-        userId: 'userIdExample',
-        cards: [
-          {
-            question: 'question1Example',
-            answer: 'answer1Example',
-            lastAnswerDate: new Date(),
-            levelOfStudy: 1,
-          },
-          {
-            question: 'question2Example',
-            answer: 'answer2Example',
-            lastAnswerDate: new Date(),
-            levelOfStudy: 2,
-          },
-        ],
-      },
-      {
-        title: 'Страны и столицы',
-        private: true,
-        userId: 'userIdExample',
-        cards: [
-          {
-            question: 'question1Example',
-            answer: 'answer1Example',
-            lastAnswerDate: new Date(),
-            levelOfStudy: 1,
-          },
-          {
-            question: 'question2Example',
-            answer: 'answer2Example',
-            lastAnswerDate: new Date(),
-            levelOfStudy: 2,
-          },
-        ],
-      },
-    ];
-    return res.json({ allDecks });
+    // const allDecks = [
+    //   {
+    //     title: 'Страны и столицы',
+    //     private: true,
+    //     userId: 'userIdExample',
+    //     cards: [
+    //       {
+    //         question: 'question1Example',
+    //         answer: 'answer1Example',
+    //         lastAnswerDate: new Date(),
+    //         levelOfStudy: 1,
+    //       },
+    //       {
+    //         question: 'question2Example',
+    //         answer: 'answer2Example',
+    //         lastAnswerDate: new Date(),
+    //         levelOfStudy: 2,
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     title: 'Страны и столицы',
+    //     private: true,
+    //     userId: 'userIdExample',
+    //     cards: [
+    //       {
+    //         question: 'question1Example',
+    //         answer: 'answer1Example',
+    //         lastAnswerDate: new Date(),
+    //         levelOfStudy: 1,
+    //       },
+    //       {
+    //         question: 'question2Example',
+    //         answer: 'answer2Example',
+    //         lastAnswerDate: new Date(),
+    //         levelOfStudy: 2,
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     title: 'Страны и столицы',
+    //     private: true,
+    //     userId: 'userIdExample',
+    //     cards: [
+    //       {
+    //         question: 'question1Example',
+    //         answer: 'answer1Example',
+    //         lastAnswerDate: new Date(),
+    //         levelOfStudy: 1,
+    //       },
+    //       {
+    //         question: 'question2Example',
+    //         answer: 'answer2Example',
+    //         lastAnswerDate: new Date(),
+    //         levelOfStudy: 2,
+    //       },
+    //     ],
+    //   },
+    // ];
+    // return res.json({ allDecks });
   } catch (error) {
     res.status(500).json({ error });
   }
