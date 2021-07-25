@@ -41,12 +41,51 @@ router.route('/newCard').post(async (req, res) => {
 router.route('/all').get(async (req, res) => {
   try {
     // заглушку убрать!
-    // const sortedByReadyForStudyCard = await Deck.sortByReadyForStudyCard(
+    // const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
     //   req.session.userId
     // );
-    // return res.json({ sortedByReadyForStudyCard });
+    // return res.json({ decksWithClusteredCards });
     const allDecks = [
       {
+        title: 'Страны и столицы',
+        private: true,
+        userId: 'userIdExample',
+        cards: [
+          {
+            question: 'question1Example',
+            answer: 'answer1Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 1,
+          },
+          {
+            question: 'question2Example',
+            answer: 'answer2Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 2,
+          },
+        ],
+      },
+      {
+        title: 'Страны и столицы',
+        private: true,
+        userId: 'userIdExample',
+        cards: [
+          {
+            question: 'question1Example',
+            answer: 'answer1Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 1,
+          },
+          {
+            question: 'question2Example',
+            answer: 'answer2Example',
+            lastAnswerDate: new Date(),
+            levelOfStudy: 2,
+          },
+        ],
+      },
+      {
+        title: 'Страны и столицы',
         private: true,
         userId: 'userIdExample',
         cards: [
