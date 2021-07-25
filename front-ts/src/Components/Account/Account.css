@@ -1,0 +1,14 @@
+.divHat{
+  display: flex;
+  justify-content: space-between;
+}
+.divSearch{
+  border-radius: 10px;
+  margin-right: 10px;
+  background-color: rgb(124, 197, 240);
+  color: yellow;
+}
+
+.glavDiv{
+  margin: 10px 10px 10px 10px;
+}

@@ -11,7 +11,7 @@ const {register,handleSubmit} = useForm()
 const dispatch = useDispatch()
 
   const handlerUser = (event:any) => {
-    // event.preventDefault()
+
     const login = event.login
      const  email = event.email
        const password = event.password

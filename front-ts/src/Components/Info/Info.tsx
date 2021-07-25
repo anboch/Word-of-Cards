@@ -1,16 +1,21 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
+import './Info.css'
 
 function Info() {
   return (
-    <div>
-      <h3>Проэкт разработали </h3>
-      <ol>Андрей Бочка </ol>
-      <ol> Грант Чобанян</ol>
-      <h4>В данном проэкте разработчики освоивали новые технологии:</h4>
+    <div className='infoDiv'>
+       
+      <Link to='/'>Home</Link>
+     <h5 style={{margin:'100px 50px 50px 50px'}}>Данная игра предназначена для тренировку памяти,
+       а так же приятного время провождения!</h5>
 
-       <li> TypeScript!</li>
-      
-      
+
+      <p>Проэкт разработали </p>
+      <p>Андрей Бочка  &&  Грант Чобанян</p>
+  
+    
+     
     </div>
   );
 }
