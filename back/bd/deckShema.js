@@ -6,16 +6,15 @@ const deckSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  // userId: { type: Schema.Types.ObjectId, ref: 'User' },
+  userId: { type: Schema.Types.ObjectId, ref: 'User' },
   cards: {
     type: Array,
     default: [],
   },
 });
 
-deckSchema.static.clusteringCardsByStatus = async (userId) => {
-  const allUserDecks = await this.find({ userId });
-  let allUserDecksWithInfoOfDelay = [];
+deckSchema.statics.clusteringCardsByStatus = async function (userId) {
+  const allUserDecks = await this.find({ userId }).lean();
   for (let deck of allUserDecks) {
     const notStarted = [];
     const learned = [];
@@ -23,14 +22,13 @@ deckSchema.static.clusteringCardsByStatus = async (userId) => {
     const notReadyToRepeat = [];
     deck.cards.forEach((card) => {
       const daysOfPause = Math.floor(
-        (card.lastAnswerDate.getTime() - new Date().getTime()) /
+        (new Date().getTime() - card.lastAnswerDate.getTime()) /
           (1000 * 60 * 60 * 24)
       );
-      const necessaryDaysOfPause = 2 ** deck.levelOfStudy;
-
-      if (card.level === 1) {
+      const necessaryDaysOfPause = 2 ** card.levelOfStudy;
+      if (card.levelOfStudy === 1) {
         notStarted.push(card);
-      } else if (card.level === 8) {
+      } else if (card.levelOfStudy === 8) {
         learned.push(card);
       } else {
         if (daysOfPause >= necessaryDaysOfPause) {
