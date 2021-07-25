@@ -11,7 +11,7 @@ const {register,handleSubmit} = useForm()
 const dispatch = useDispatch()
 
   const handlerUser = (event:any) => {
-    // event.preventDefault()
+
     const login = event.login
      const  email = event.email
        const password = event.password
@@ -20,8 +20,8 @@ const dispatch = useDispatch()
   }
 
   return (
-    <div className="divRegistration">
-      <form onSubmit={handleSubmit(handlerUser)}>
+    <div className="divRegistration animate__animated animate__flipInY">
+      <form className='tilt-in-fwd-tr' onSubmit={handleSubmit(handlerUser)}>
         <div className="row mb-3">
           <label  className="col-sm-2 col-form-label">
             Login
@@ -64,7 +64,7 @@ const dispatch = useDispatch()
             />
           </div>
         </div>
-        <button className="btn btn-primary">Registration</button>
+        <button className="btn btn-primary animate__animated animate__lightSpeedInRight">Registration</button>
       </form>
     </div>
   );

@@ -5,6 +5,8 @@ import Login from '../Login/Login';
 import Home from '../Home/Home';
 import Game from '../Game/Game';
 import Account from '../Account/Account';
+import Info from '../Info/Info';
+import Demo from '../Demo/Demo';
 
 function App() {
   return (
@@ -18,6 +20,10 @@ function App() {
           <Registration />
         </Route>
 
+        <Route exact path="/demo">
+          <Demo />
+        </Route>
+
         <Route exact path="/login">
           <Login />
         </Route>
@@ -28,6 +34,10 @@ function App() {
 
         <Route exact path="/account">
           <Account />
+        </Route>
+
+        <Route exact path="/info">
+          <Info/>
         </Route>
       </Switch>
     </div>

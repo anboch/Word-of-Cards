@@ -4,15 +4,14 @@ import { State } from '../../redux/types';
 import Deck from '../Deck/Deck';
 
 export default function DeckList() {
-  const allDecks = useSelector((state: State) => {
-    return state.allDecks;
-  });
+  const state = useSelector((state: State) => state);
+  console.log('state:', state);
 
   return (
     <div>
-      {allDecks?.map((deck) => (
+      {state.deckReducer.allDecks.map((deck) => (
         <Deck key={deck._id} deck={deck} />
-      ))}
+      ))} 
     </div>
   );
 }

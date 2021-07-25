@@ -19,11 +19,11 @@ export function* workerLoginUser (action:{type:string,payload:{login:string,pass
  
   try {
     const {_id,login,email,password} = yield call(fetchLoginUserSaga,action.payload)
-    if(_id){
-    yield put(addUserAC(_id,login,email,password));
-    window.location.href="/account"
+    if(login){
+ yield put(addUserAC(_id,login,email,password));
+   
     }else{
-      alert(' Такой пользователь не зарегестрирован!')
+      alert('Такой пользователь не зарегестрирован!')
     }
  } catch (e) {
     yield put({type: "error", message: e.message});
