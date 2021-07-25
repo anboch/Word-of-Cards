@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const session = require('express-session');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -6,10 +7,11 @@ const MongoStore = require('connect-mongo');
 const userRouter = require('./routers/userRouter');
 const deckRouter = require('./routers/deckRouter');
 const connectDB = require('./bd/connect');
+const morgan = require('morgan');
 
 const { DBURL, PORT, COOKIE_NAME, SECRET } = process.env;
 
-const app = express();
+app.use(morgan('dev'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -21,16 +23,16 @@ app.use(
 );
 
 // создаем сессии
-app.use(() => {
-  return session({
+app.use(
+  session({
     secret: SECRET,
     resave: true,
     saveUninitialized: false,
     name: COOKIE_NAME,
     cookie: { secure: false, maxAge: 60000000 },
     store: MongoStore.create({ mongoUrl: DBURL }),
-  });
-});
+  })
+);
 
 // Подключаемся к БД
 connectDB();
