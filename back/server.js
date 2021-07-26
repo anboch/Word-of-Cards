@@ -46,9 +46,5 @@ app.listen(PORT ?? 2224, () => {
   console.log(`Server in port ${PORT ?? 2224}`);
 });
 
-const fs = require('fs');
-const Deck = require('./bd/deckShema');
-const Card = require('./bd/cardShema');
-
 //Засеивание базы
 // seader('./bd/cards');
