@@ -17,16 +17,20 @@ export interface DownloadDecksAction extends DeckAction {
 
 export interface DownloadDecksSagaAction extends DeckAction {
   type: 'DOWNLOAD_DECKS_SAGA';
-  
-  export interface GetDeckAction extends DeckAction {
-    type: 'GET_DECK';
-    payload: DeckType;
-  }
-  
-  export interface GetDeckSagaAction extends DeckAction {
-    type: 'GET_DECK_SAGA';
-    payload: String;
-  }
 }
 
-export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction |GetDeckAction| GetDeckSagaAction;
+export interface GetDeckAction extends DeckAction {
+  type: 'GET_DECK';
+  payload: DeckType;
+}
+
+export interface GetDeckSagaAction extends DeckAction {
+  type: 'GET_DECK_SAGA';
+  payload: string;
+}
+
+export type DeckActions =
+  | DownloadDecksAction
+  | DownloadDecksSagaAction
+  | GetDeckAction
+  | GetDeckSagaAction;

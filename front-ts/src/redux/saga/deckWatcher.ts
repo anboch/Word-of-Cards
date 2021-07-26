@@ -26,7 +26,9 @@ function* getDeckWorker(action: { type: DeckActionTypes; payload: string }) {
   }
 }
 
+// yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
+
 export function* deckWatcher() {
-  yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
-  yield takeEvery<DeckActionTypes>('GET_DECK_SAGA', getDeckWorker);
+  yield takeEvery('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
+  yield takeEvery('GET_DECK_SAGA', getDeckWorker);
 }

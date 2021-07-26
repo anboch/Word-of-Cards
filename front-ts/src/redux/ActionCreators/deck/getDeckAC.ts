@@ -19,12 +19,12 @@ export const getDeckFetch = async (deckId: string) => {
   }
 };
 
-export const getDeckAC = (deckId: DeckType): GetDeckAction => ({
+export const getDeckAC = (deck: DeckType): GetDeckAction => ({
   type: 'GET_DECK',
-  payload: deckId,
+  payload: deck,
 });
 
-export const getDeckSagaAC = (deckId: String): GetDeckSagaAction => ({
+export const getDeckSagaAC = (deckId: string): GetDeckSagaAction => ({
   type: 'GET_DECK_SAGA',
   payload: deckId,
 });
