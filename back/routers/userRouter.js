@@ -14,6 +14,7 @@ router
     const { login, email, password } = req.body;
     if (login && email && password) {
       const newUser = await User.create({ login, email, password });
+      req.session.user = newUser;
       res.status(200).json(newUser);
     } else {
       res.status(400).json({ createTodo: false });
@@ -28,11 +29,11 @@ router
   // })
 
   .post(async (req, res) => {
-    console.log('loginUser:');
     const { login, password } = req.body;
     if (login && password) {
       const loginUser = await User.findOne({ login, password });
       if (loginUser) {
+        req.session.user = loginUser;
         res.status(200).json(loginUser);
       } else {
         res.status(200).json({ userInBase: false });
