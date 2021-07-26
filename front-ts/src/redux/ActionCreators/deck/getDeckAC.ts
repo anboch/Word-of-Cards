@@ -5,22 +5,26 @@ import {
 import { DeckType } from '../../types/deck/deckTypes';
 const { REACT_APP_SERVER_URL } = process.env;
 
-export const getDeckFetch = async () => {
-  const req = await fetch(`${REACT_APP_SERVER_URL}deck/all`);
+export const getDeckFetch = async (deckId: string) => {
+  const req = await fetch(`${REACT_APP_SERVER_URL}deck/`, {
+    credentials: 'include',
+    method: 'POST',
+    headers: { 'Content-Type': 'Application/json' },
+    body: JSON.stringify({ deckId }),
+  });
   const res = await req.json();
   if (req.status === 200) {
-    console.log('res:', res);
     return res;
   } else {
   }
 };
 
-export const getDecksAC = (deck: DeckType): GetDeckAction => ({
+export const getDeckAC = (deckId: DeckType): GetDeckAction => ({
   type: 'GET_DECK',
-  payload: deck,
+  payload: deckId,
 });
 
-export const getDecksSagaAC = (deckId: String): GetDeckSagaAction => ({
+export const getDeckSagaAC = (deckId: String): GetDeckSagaAction => ({
   type: 'GET_DECK_SAGA',
   payload: deckId,
 });

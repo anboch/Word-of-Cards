@@ -6,6 +6,6 @@ export const fetchAddUserSaga = async ({ login, email, password }) => {
     headers: { 'Content-Type': 'Application/json' },
     body: JSON.stringify({ login, email, password }),
   });
-  const data = res.json();
-  return data;
+  const deck = res.json();
+  return deck;
 };

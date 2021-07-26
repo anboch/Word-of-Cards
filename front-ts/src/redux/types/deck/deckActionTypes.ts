@@ -29,4 +29,4 @@ export interface DownloadDecksSagaAction extends DeckAction {
   }
 }
 
-export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction;
+export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction |GetDeckAction| GetDeckSagaAction;

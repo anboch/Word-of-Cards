@@ -9,14 +9,15 @@ import {
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getDeckSagaAC } from '../../redux/ActionCreators/deck/getDeckAC';
 import { DeckType } from '../../redux/types/deck/deckTypes';
 
 export default function Deck({ deck }: { deck: DeckType }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const startGameHandler = async (deckId) => {
-    dispatch(startGameSagaAC(deckId));
+  const startGameHandler = async (deckId: string) => {
+    dispatch(getDeckSagaAC(deckId));
     history.push('/game');
   };
   return (

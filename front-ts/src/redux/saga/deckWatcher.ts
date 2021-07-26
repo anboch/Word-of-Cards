@@ -3,6 +3,7 @@ import {
   downloadDeckFetch,
   downloadDecksAC,
 } from '../ActionCreators/deck/downloadDeckAC';
+import { getDeckFetch, getDeckAC } from '../ActionCreators/deck/getDeckAC';
 import { DeckActionTypes } from '../types/deck/deckActionTypes';
 
 function* downloadDecksWorker() {
@@ -16,9 +17,9 @@ function* downloadDecksWorker() {
   }
 }
 
-function* getDeckWorker() {
+function* getDeckWorker(action: { type: DeckActionTypes; payload: string }) {
   try {
-    const { deck } = yield call(getDeckFetch);
+    const { deck } = yield call(getDeckFetch, action.payload);
     yield put(getDeckAC(deck));
   } catch (e) {
     yield put({ type: 'ERROR', message: e.message });
