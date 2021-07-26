@@ -40,9 +40,8 @@ router.route('/newCard').post(async (req, res) => {
 // Показать все доски юзера
 // isLogin добавить!
 router.route('/all').get(async (req, res) => {
-  console.log('req.session', req.session);
   try {
-    // заглушку убрать!
+    // заглушку убрать и заменить на req.session.user._id!
     const userOwnerOfDeck = await User.findOne({ login: 'Andrey' });
     const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
       userOwnerOfDeck._id

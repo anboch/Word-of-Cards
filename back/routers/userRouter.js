@@ -34,7 +34,6 @@ router
       const loginUser = await User.findOne({ login, password });
       if (loginUser) {
         req.session.user = loginUser;
-        console.log('req.session.user:', req.session.user);
         res.status(200).json(loginUser);
       } else {
         res.status(200).json({ userInBase: false });
