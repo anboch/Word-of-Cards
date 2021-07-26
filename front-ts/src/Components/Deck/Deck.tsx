@@ -7,9 +7,18 @@ import {
   Badge,
   Button,
 } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { DeckType } from '../../redux/types/deck/deckTypes';
 
 export default function Deck({ deck }: { deck: DeckType }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const startGameHandler = async (deckId) => {
+    dispatch(startGameSagaAC(deckId));
+    history.push('/game');
+  };
   return (
     <div>
       <Card style={{ width: '18rem', borderRadius: '15px', margin: '2rem' }}>
@@ -61,7 +70,9 @@ export default function Deck({ deck }: { deck: DeckType }) {
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button variant="success">Учить</Button>{' '}
+          <Button variant="success" onClick={() => startGameHandler(deck._id)}>
+            Учить
+          </Button>{' '}
           <Button variant="dark">Редактировать</Button>
         </Card.Body>
       </Card>

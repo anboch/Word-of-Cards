@@ -16,6 +16,16 @@ function* downloadDecksWorker() {
   }
 }
 
+function* getDeckWorker() {
+  try {
+    const { deck } = yield call(getDeckFetch);
+    yield put(getDeckAC(deck));
+  } catch (e) {
+    yield put({ type: 'ERROR', message: e.message });
+  }
+}
+
 export function* deckWatcher() {
   yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
+  yield takeEvery<DeckActionTypes>('GET_DECK_SAGA', getDeckWorker);
 }
