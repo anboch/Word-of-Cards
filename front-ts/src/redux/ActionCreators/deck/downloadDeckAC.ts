@@ -9,6 +9,7 @@ export const downloadDeckFetch = async () => {
   const req = await fetch(`${REACT_APP_SERVER_URL}deck/all`);
   const res = await req.json();
   if (req.status === 200) {
+    console.log('res:', res);
     return res;
   } else {
   }

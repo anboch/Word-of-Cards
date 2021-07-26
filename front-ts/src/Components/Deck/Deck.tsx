@@ -22,25 +22,47 @@ export default function Deck({ deck }: { deck: DeckType }) {
                 </Card.Text> */}
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>30/200 выучено</ListGroupItem>
-          <ListGroupItem>50 на запоминании</ListGroupItem>
-          <ListGroupItem>25 готовы к повторению</ListGroupItem>
+          <ListGroupItem>
+            {deck.learned.length} из {deck.cards.length} выучено
+          </ListGroupItem>
+          <ListGroupItem>
+            {deck.notReadyToRepeat.length} на запоминании
+          </ListGroupItem>
+          <ListGroupItem>
+            {deck.readyToRepeat.length} готовы к повторению
+          </ListGroupItem>
           <ListGroupItem>
             <ProgressBar>
-              <ProgressBar variant="success" now={15} key={1} />
-              <ProgressBar variant="info" now={25} key={2} />
-              <ProgressBar variant="warning" now={12} key={2} />
+              <ProgressBar
+                variant="success"
+                now={(deck.learned.length / deck.cards.length) * 100}
+              />
+              <ProgressBar
+                variant="info"
+                now={(deck.notReadyToRepeat.length / deck.cards.length) * 100}
+              />
+              <ProgressBar
+                variant="warning"
+                now={(deck.readyToRepeat.length / deck.cards.length) * 100}
+              />
             </ProgressBar>
           </ListGroupItem>
           <ListGroupItem>
-            <Badge pill bg="primary">
-              Личная колода
-            </Badge>
+            {deck.private && (
+              <Badge pill bg="secondary">
+                Приватная колода
+              </Badge>
+            )}
+            {!deck.private && (
+              <Badge pill bg="primary">
+                Публичная колода
+              </Badge>
+            )}
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
           <Button variant="success">Учить</Button>{' '}
-          <Button variant="secondary">Редактировать</Button>
+          <Button variant="dark">Редактировать</Button>
         </Card.Body>
       </Card>
     </div>

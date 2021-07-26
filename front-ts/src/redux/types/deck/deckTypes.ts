@@ -3,6 +3,7 @@ export interface DeckType {
   _id: string;
   private: boolean;
   userId: string;
+  cards: Array<Object>;
   notStarted: Array<Object>;
   learned: Array<Object>;
   readyToRepeat: Array<Object>;

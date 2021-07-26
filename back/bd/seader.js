@@ -1,14 +1,17 @@
 const fs = require('fs');
 const Deck = require('./deckShema');
 const Card = require('./cardShema');
+const User = require('./userShema');
 
-const folder = './cards';
-
-const seader = async () => {
+const seader = async (folder) => {
+  // const folder = './bd/cards';
   const readDirSync = fs.readdirSync(folder);
-
+  const userOwnerOfDeck = await User.findOne({ login: 'Andrey' });
   for (let fileName of readDirSync) {
-    const newDeck = new Deck({ title: fileName.split('.')[0] });
+    const newDeck = new Deck({
+      title: fileName.split('.')[0],
+      userId: userOwnerOfDeck._id,
+    });
     const fileData = fs.readFileSync(`${folder}/${fileName}`, 'utf-8');
     const arrOfcards = fileData.split('\n');
     for (let card of arrOfcards) {
@@ -26,9 +29,9 @@ const seader = async () => {
       });
       newDeck.cards.push(newCard);
     }
-    console.log('newDeck:', newDeck);
-    // await newDeck.save();
+    await newDeck.save();
   }
 };
 
 // seader();
+module.exports = { seader };

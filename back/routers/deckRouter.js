@@ -1,5 +1,6 @@
 const Deck = require('../bd/deckShema');
 const Card = require('../bd/cardShema');
+const User = require('../bd/userShema');
 
 const router = require('express').Router();
 
@@ -42,71 +43,14 @@ router.route('/all').get(async (req, res) => {
   console.log('req.session', req.session);
   try {
     // заглушку убрать!
-    // const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
-    //   req.session.user._id
-    // );
-    // console.log('decksWithClusteredCards:', decksWithClusteredCards);
-    // return res.json({ decksWithClusteredCards });
-    // const allDecks = [
-    //   {
-    //     title: 'Страны и столицы',
-    //     private: true,
-    //     userId: 'userIdExample',
-    //     cards: [
-    //       {
-    //         question: 'question1Example',
-    //         answer: 'answer1Example',
-    //         lastAnswerDate: new Date(),
-    //         levelOfStudy: 1,
-    //       },
-    //       {
-    //         question: 'question2Example',
-    //         answer: 'answer2Example',
-    //         lastAnswerDate: new Date(),
-    //         levelOfStudy: 2,
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     title: 'Страны и столицы',
-    //     private: true,
-    //     userId: 'userIdExample',
-    //     cards: [
-    //       {
-    //         question: 'question1Example',
-    //         answer: 'answer1Example',
-    //         lastAnswerDate: new Date(),
-    //         levelOfStudy: 1,
-    //       },
-    //       {
-    //         question: 'question2Example',
-    //         answer: 'answer2Example',
-    //         lastAnswerDate: new Date(),
-    //         levelOfStudy: 2,
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     title: 'Страны и столицы',
-    //     private: true,
-    //     userId: 'userIdExample',
-    //     cards: [
-    //       {
-    //         question: 'question1Example',
-    //         answer: 'answer1Example',
-    //         lastAnswerDate: new Date(),
-    //         levelOfStudy: 1,
-    //       },
-    //       {
-    //         question: 'question2Example',
-    //         answer: 'answer2Example',
-    //         lastAnswerDate: new Date(),
-    //         levelOfStudy: 2,
-    //       },
-    //     ],
-    //   },
-    // ];
-    // return res.json({ allDecks });
+    const userOwnerOfDeck = await User.findOne({ login: 'Andrey' });
+    const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
+      userOwnerOfDeck._id
+    );
+    decksWithClusteredCards.sort(
+      (a, b) => b.readyToRepeat.length - a.readyToRepeat.length
+    );
+    return res.json({ decksWithClusteredCards });
   } catch (error) {
     res.status(500).json({ error });
   }

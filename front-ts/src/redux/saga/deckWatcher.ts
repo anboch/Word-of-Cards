@@ -7,8 +7,8 @@ import { DeckActionTypes } from '../types/deck/deckActionTypes';
 
 function* downloadDecksWorker() {
   try {
-    const { allDecks } = yield call(downloadDeckFetch);
-    const action = downloadDecksAC(allDecks);
+    const { decksWithClusteredCards } = yield call(downloadDeckFetch);
+    const action = downloadDecksAC(decksWithClusteredCards);
     // put == dispatch
     yield put(action);
   } catch (e) {
