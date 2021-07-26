@@ -28,7 +28,7 @@ export default function Account() {
           <input
             {...register('poisk')}
             className="divSearch"
-            placeholder=" 🔍  поиск карт"
+            placeholder=" 🔍  поиск колоды"
           />
           <button className="divSearch">✔</button>
         </form>

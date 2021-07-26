@@ -7,6 +7,7 @@ import Game from '../Game/Game';
 import Account from '../Account/Account';
 import Info from '../Info/Info';
 import Demo from '../Demo/Demo';
+import Edit from '../Edit/Edit';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
 
         <Route exact path="/demo">
           <Demo />
+        </Route>
+
+        <Route exact path="/account/edit">
+          <Edit />
         </Route>
 
         <Route exact path="/login">

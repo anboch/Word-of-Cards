@@ -1,4 +1,4 @@
-import { AllDecksType } from '../types/deck/deckTypes';
+import { AllDecksType, EditedDeck } from '../types/deck/deckTypes';
 
 export interface User {
   _id: string;
@@ -10,9 +10,9 @@ export interface User {
 export interface State {
   deckReducer: {
     allDecks: AllDecksType;
+    editedDeck: EditedDeck;
   };
   userReducer: {
     user: User;
   };
 }
-

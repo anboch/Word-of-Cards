@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import {State} from '../../redux/types/index'
+import {useHistory} from 'react-router-dom'
 import {
   Card,
   ListGroup,
@@ -10,6 +13,15 @@ import {
 import { DeckType } from '../../redux/types/deck/deckTypes';
 
 export default function Deck({ deck }: { deck: DeckType }) {
+  const history = useHistory()
+  const state = useSelector((state:State) => state)
+  const dispatch = useDispatch()
+
+  const thisDeck = (deck:DeckType) => {
+  dispatch({type:'THIS_DECK', payload:deck})
+  history.push('/account/edit')
+  }
+
   return (
     <div>
       <Card style={{ width: '18rem', borderRadius: '15px', margin: '2rem' }}>
@@ -62,7 +74,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
         </ListGroup>
         <Card.Body>
           <Button variant="success">Учить</Button>{' '}
-          <Button variant="dark">Редактировать</Button>
+          <Button onClick={() => thisDeck(deck)} variant="dark">Редактировать</Button>
         </Card.Body>
       </Card>
     </div>

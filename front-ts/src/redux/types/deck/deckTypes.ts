@@ -11,3 +11,5 @@ export interface DeckType {
 }
 
 export type AllDecksType = DeckType[];
+
+export type EditedDeck = DeckType
