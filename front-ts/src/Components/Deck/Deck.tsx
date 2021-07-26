@@ -9,15 +9,15 @@ import {
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getDeckSagaAC } from '../../redux/ActionCreators/deck/getDeckAC';
+import { setDeckForGameAC } from '../../redux/ActionCreators/deck/setDeckForGameAC';
 import { DeckType } from '../../redux/types/deck/deckTypes';
 
 export default function Deck({ deck }: { deck: DeckType }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const startGameHandler = async (deckId: string) => {
-    dispatch(getDeckSagaAC(deckId));
+  const startGameHandler = async (deck: DeckType) => {
+    dispatch(setDeckForGameAC(deck));
     history.push('/game');
   };
   return (
@@ -71,7 +71,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button variant="success" onClick={() => startGameHandler(deck._id)}>
+          <Button variant="success" onClick={() => startGameHandler(deck)}>
             Учить
           </Button>{' '}
           <Button variant="dark">Редактировать</Button>

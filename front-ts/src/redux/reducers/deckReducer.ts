@@ -14,7 +14,9 @@ export const deckReducer = (
       return { ...deckReducer, allDecks: allDecksPayload };
     case 'GET_DECK':
       const deckPayload: DeckType = action.payload;
-      return { ...deckReducer, currentDeck: deckPayload };
+      return { ...deckReducer, deckInGame: deckPayload };
+    case 'SET_DECK_FOR_GAME':
+      return { ...deckReducer, deckInGame: action.payload };
     default:
       return deckReducer;
   }

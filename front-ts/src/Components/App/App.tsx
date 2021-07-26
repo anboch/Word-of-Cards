@@ -10,7 +10,7 @@ import Demo from '../Demo/Demo';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App d-flex justify-content-center">
       <Switch>
         <Route exact path="/">
           <Home />
@@ -37,7 +37,7 @@ function App() {
         </Route>
 
         <Route exact path="/info">
-          <Info/>
+          <Info />
         </Route>
       </Switch>
     </div>

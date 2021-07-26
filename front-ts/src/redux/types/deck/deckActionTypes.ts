@@ -3,7 +3,8 @@ export type DeckActionTypes =
   | 'DOWNLOAD_DECKS'
   | 'DOWNLOAD_DECKS_SAGA'
   | 'GET_DECK'
-  | 'GET_DECK_SAGA';
+  | 'GET_DECK_SAGA'
+  | 'SET_DECK_FOR_GAME';
 
 interface DeckAction {
   type: DeckActionTypes;
@@ -29,8 +30,14 @@ export interface GetDeckSagaAction extends DeckAction {
   payload: string;
 }
 
+export interface SetDeckForGameAction extends DeckAction {
+  type: 'SET_DECK_FOR_GAME';
+  payload: DeckType;
+}
+
 export type DeckActions =
   | DownloadDecksAction
   | DownloadDecksSagaAction
   | GetDeckAction
-  | GetDeckSagaAction;
+  | GetDeckSagaAction
+  | SetDeckForGameAction;

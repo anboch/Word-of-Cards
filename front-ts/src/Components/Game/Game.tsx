@@ -5,16 +5,20 @@ import { State } from '../../redux/types';
 import LearnedDeck from '../App/LearnedDeck/LearnedDeck';
 
 function Game() {
-  const currentDeck = useSelector(
-    (state: State) => state.deckReducer.currentDeck
+  const deckInGame = useSelector(
+    (state: State) => state.deckReducer.deckInGame
   );
 
   return (
     <>
-      <Container className="d-flex justify-content-center">
-        {!currentDeck && <Spinner animation="border" variant="success" />}
-        {currentDeck && (
-          <LearnedDeck key={currentDeck._id} currentDeck={currentDeck} />
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: '100%', position: 'absolute' }}
+      >
+        {!deckInGame ? (
+          <Spinner animation="border" variant="success" />
+        ) : (
+          <LearnedDeck key={deckInGame._id} deckInGame={deckInGame} />
         )}
       </Container>
     </>
