@@ -28,6 +28,7 @@ function Edit() {
 
  const saveDeck = (deck:object) => {
 dispatch(saveEditDeckSagaAC(deck))
+history.push('/account')
  }
 
  const addCard = (event:any) => {

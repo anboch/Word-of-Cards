@@ -27,15 +27,23 @@ export const deckReducer = (
      return {...deckReducer,editedDeck:action.payload}
     case 'RENAME_TITLE_DECK':
       return {...deckReducer,editedDeck:{...deckReducer.editedDeck,title:action.payload}} 
-  //  case "RENAME_QUESTION_CARD":
-  //       return {...deckReducer,editedDeck:{...deckReducer.editedDeck, card:deckReducer.editedDeck.cards.map(el => {
-  //         if(el.question == action.paiload._id){
-              // return el.question=action.paiload.question}
-              // else return el
-  //       })}}
-  // case 'DELETE_CARD':
-  //   return {...deckReducer,editedDeck:{...deckReducer.editedDeck,
-  //   cards:deckReducer.editedDeck.cards.filter( (el) => el._id !== action.payload)}}
+    case 'RENAME_CARD':
+        return {...deckReducer, editedDeck:{...deckReducer.editedDeck,cards:
+        deckReducer.editedDeck.cards.map(card => {
+          if(card._id == action.payload._id){
+            card.answer=action.payload.answer
+            card.question=action.payload.question
+            return card
+          } else {
+            return card
+          }
+        })}
+   
+      }
+  case 'DELETE_CARD':
+    return {...deckReducer,editedDeck:{...deckReducer.editedDeck,
+    cards:deckReducer.editedDeck.cards.filter( (el) => {
+     return  el._id !== action.payload})}}
   case 'ADD_CARD':
     return {...deckReducer,editedDeck:{...deckReducer.editedDeck,cards:[...deckReducer.editedDeck.cards,action.payload]}}
     default:
