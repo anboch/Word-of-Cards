@@ -1,3 +1,5 @@
+import { CardType } from '../card/cardTypes';
+
 export interface DeckType {
   title: string;
   _id: string;
@@ -8,14 +10,6 @@ export interface DeckType {
   learned: CardType[];
   readyToRepeat: CardType[];
   notReadyToRepeat: CardType[];
-}
-
-export interface CardType {
-  _id: string;
-  question: string;
-  answer: string;
-  lastAnswerDate: Date;
-  levelOfStudy: number;
 }
 
 export type AllDecksType = DeckType[];

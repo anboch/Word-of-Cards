@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { DeckType, CardType } from '../../../redux/types/deck/deckTypes';
+import { resultOfAnswerSagaAC } from '../../../redux/ActionCreators/card/resultOfAnswerSagaAC';
+import { CardType } from '../../../redux/types/card/cardTypes';
+import { DeckType } from '../../../redux/types/deck/deckTypes';
 
 export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [position, setPosition] = useState(0);
   const dispatch = useDispatch();
 
-  const resultOfAnswerHandler = async (card: CardType, remembered: boolean) => {
+  const deckInGameId = deckInGame._id;
+  const cardInGame = deckInGame.readyToRepeat[position];
+  const resultOfAnswerHandler = (
+    deckInGameId: string,
+    cardInGame: CardType,
+    remembered: boolean
+  ) => {
     setShowAnswer((pre) => !pre);
-    // dispatch(resultOfAnswerSagaAC(card, remembered));
+    dispatch(resultOfAnswerSagaAC(deckInGameId, cardInGame, remembered));
     setPosition((pre) =>
       pre < deckInGame.readyToRepeat.length - 1 ? (pre += 1) : pre
     );
@@ -23,7 +31,7 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
         style={{ width: '500px', height: '400px' }}
       >
         <Card.Header>
-          {position}/{deckInGame.readyToRepeat.length}
+          {position + 1}/{deckInGame.readyToRepeat.length}
         </Card.Header>
         <Card.Body className="d-flex align-items-center justify-content-between flex-column">
           {/* <Card.Title>Вопрос</Card.Title> */}
@@ -47,7 +55,9 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
               <Button
                 style={{ width: '8rem' }}
                 variant="secondary"
-                onClick={() => setShowAnswer((pre) => !pre)}
+                onClick={() =>
+                  resultOfAnswerHandler(deckInGameId, cardInGame, false)
+                }
               >
                 Не вспомнил
               </Button>{' '}
@@ -55,10 +65,7 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
                 style={{ width: '8rem' }}
                 variant="success"
                 onClick={() =>
-                  resultOfAnswerHandler(
-                    deckInGame.readyToRepeat[position],
-                    true
-                  )
+                  resultOfAnswerHandler(deckInGameId, cardInGame, true)
                 }
               >
                 Вспомнил

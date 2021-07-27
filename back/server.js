@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const userRouter = require('./routers/userRouter');
 const deckRouter = require('./routers/deckRouter');
+const cardRouter = require('./routers/cardRouter');
 const connectDB = require('./bd/connect');
 const morgan = require('morgan');
 const User = require('./bd/userShema');
@@ -41,6 +42,7 @@ connectDB();
 
 app.use('/user', userRouter);
 app.use('/deck', deckRouter);
+app.use('/card', cardRouter);
 
 app.listen(PORT ?? 2224, () => {
   console.log(`Server in port ${PORT ?? 2224}`);
