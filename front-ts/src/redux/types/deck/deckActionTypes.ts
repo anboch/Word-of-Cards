@@ -1,7 +1,8 @@
+import { CardType } from '../card/cardTypes';
 import { AllDecksType, EditedDeck } from './deckTypes';
 export type DeckActionTypes = 'DOWNLOAD_DECKS' | 'DOWNLOAD_DECKS_SAGA' 
 |'THIS_DECK'| 'THIS_DECK_SAGA' | 'RENAME_TITLE_DECK' |'DELETE_CARD' |'SAVE_RENAME_DECK_SAGA'
-|'SAVE_RENAME_DECK';
+|'SAVE_RENAME_DECK'|'ADD_CARD';
 
 interface DeckAction {
   type: DeckActionTypes;
@@ -41,7 +42,7 @@ export interface DeleteCard extends DeckAction {
   payload:string
 }
 
-//save rename Deck 
+//save rename edit Deck 
 
 export interface SaveRenameDeckSagaAction extends DeckAction {
   type: 'SAVE_RENAME_DECK_SAGA';
@@ -52,7 +53,14 @@ export interface SaveRenameDeckAction extends DeckAction {
   type:'SAVE_RENAME_DECK';
   payload:object
 }
+// add card in deck
+export interface AddCardAction extends DeckAction {
+  type: 'ADD_CARD';
+  payload: CardType;
+}
+
+
 
 export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction 
 |ThisDeckAction | ThisDeckSagaAction | RenameDeckAction |DeleteCard |SaveRenameDeckSagaAction
-|SaveRenameDeckAction;
+|SaveRenameDeckAction|AddCardAction 

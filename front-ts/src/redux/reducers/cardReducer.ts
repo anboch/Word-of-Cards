@@ -1,5 +1,5 @@
 
-const initialStateCard = {poiskCard:''}
+const initialStateCard = {poiskCard:'',allCards:[]}
 
 export const cardReducer = (state = initialStateCard, action:{type:string,payload:string}) => {
   switch (action.type) {

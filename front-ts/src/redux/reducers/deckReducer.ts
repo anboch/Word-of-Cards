@@ -1,6 +1,7 @@
 import { State } from '../types/index';
 import { DeckActions } from '../types/deck/deckActionTypes';
-import { AllDecksType, EditedDeck } from '../types/deck/deckTypes';
+import { AllDecksType } from '../types/deck/deckTypes';
+import { CardType } from '../types/card/cardTypes';
 
 const init: State['deckReducer'] = { allDecks: [], editedDeck:{
   title: '',
@@ -34,7 +35,9 @@ export const deckReducer = (
   //       })}}
   // case 'DELETE_CARD':
   //   return {...deckReducer,editedDeck:{...deckReducer.editedDeck,
-  //     cards:deckReducer.editedDeck.cards.filter( (el) => el._id !== action.payload)}}
+  //   cards:deckReducer.editedDeck.cards.filter( (el) => el._id !== action.payload)}}
+  case 'ADD_CARD':
+    return {...deckReducer,editedDeck:{...deckReducer.editedDeck,cards:[...deckReducer.editedDeck.cards,action.payload]}}
     default:
       return deckReducer;
   }

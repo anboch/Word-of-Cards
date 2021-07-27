@@ -6,10 +6,13 @@ import Card from '../Card/Card';
 import {CardType} from '../../redux/types/card/cardTypes'
 import {useHistory} from 'react-router-dom'
 import './Edit.css'
-// import {SaveRenameDeckSagaAction} from '../../redux/'
+import { addCardSagaAC } from '../../redux/ActionCreators/Card/addCard';
+import {saveEditDeckSagaAC} from '../../redux/ActionCreators/deck/saveEditDeckAC'
+import {useForm} from 'react-hook-form'
 
 
 function Edit() {
+  const {register,handleSubmit} = useForm()
   const history = useHistory()
   const state = useSelector((state:State) => state)
   const dispatch = useDispatch()
@@ -24,29 +27,32 @@ function Edit() {
  }
 
  const saveDeck = (deck:object) => {
-// dispatch(SaveRenameDeckSagaAction(deck))
+dispatch(saveEditDeckSagaAC(deck))
  }
 
- const addCard = (e:any) => {
-   e.preventDefault()
+ const addCard = (event:any) => {
    setAddQuest(false)
-  //  dispatch()
+   const question=event.question
+   const answer=event.answer
+   dispatch(addCardSagaAC(question,
+  answer))
+
  }
 
   return (
     <div>
      <div>
        {addQuest && <div className="animate__animated animate__flipInY addQuest">
-         <form onSubmit={addCard}>
+         <form onSubmit={handleSubmit(addCard)}>
            
-         <input placeholder='введите вопрос' type="text"/>
-         <input placeholder='введите ответ' type="text"/>
+         <input {...register('question')} placeholder='введите вопрос' type="text"/>
+         <input {...register('answer')} placeholder='введите ответ' type="text"/>
          <button className="button btn btn-success" >добавить</button>
          </form></div>}
      {renTitle ? <div >
        <h2>{state.deckReducer.editedDeck.title}</h2>
-       <button className="button btn btn-success" onClick={(pre) => setRenTitle(!pre)}>изменить название</button>
-       <button className="button btn btn-dark" onClick={()=>setAddQuest(true)}>добавить вопрос</button>
+       <button className="button btn btn-success" onClick={(pre) => setRenTitle(!pre)}>изменить название колоды</button>
+      <div> <button className="button btn btn-dark" onClick={()=>setAddQuest(true)}>добавить карточку</button></div>
        </div>
       :<form onSubmit={renameTitleDeck}>
       <input name='title' placeholder='new title'/>

@@ -18,6 +18,7 @@ dispatch({type:'DELETE_CARD', payload:id})
 }
 
 
+
   return (
    
     <div className='cardDiv' style={{marginLeft:'175px'}}>
