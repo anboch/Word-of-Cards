@@ -33,7 +33,7 @@ export default function Account() {
           <button className="divSearch">✔</button>
         </form>
       </div> */}
-      <h3 className="animate__animated animate__zoomInUp">
+      <h3 className="d-flex justify-content-center animate__animated animate__zoomInUp">
         Привет {state.userReducer.user.login.toUpperCase()}!
       </h3>
       <DeckList />
