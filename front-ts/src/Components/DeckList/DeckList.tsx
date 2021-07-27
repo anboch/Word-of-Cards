@@ -5,7 +5,6 @@ import Deck from '../Deck/Deck';
 
 export default function DeckList() {
   const state = useSelector((state: State) => state);
-  console.log('state:', state);
 
   return (
     <div>

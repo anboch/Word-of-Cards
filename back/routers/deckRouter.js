@@ -55,4 +55,19 @@ router.route('/all').get(async (req, res) => {
   }
 });
 
+// Вернуть одну доску по id
+// isLogin добавить!
+router.route('/').post(async (req, res) => {
+  try {
+    // заглушку убрать и заменить на req.session.user._id!
+    const userDecks = await Deck.find({ userId: '60fbe244a204e748dc39129c' });
+    const deck = userDecks.find(
+      (deck) => deck._id.toString() === req.body.deckId
+    );
+    return res.json({ deck });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 module.exports = router;
