@@ -20,11 +20,16 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
     cardInGame: CardType,
     remembered: boolean
   ) => {
-    setShowAnswer((pre) => !pre);
+    setShowAnswer(false);
     dispatch(resultOfAnswerSagaAC(deckInGameId, cardInGame, remembered));
     setPosition((pre) =>
       pre < deckInGame.readyToRepeat.length - 1 ? (pre += 1) : pre
     );
+  };
+
+  const goToPreviousCard = () => {
+    setPosition((pre) => (pre > 0 ? (pre -= 1) : pre));
+    setShowAnswer(false);
   };
 
   useEffect(() => {
@@ -49,10 +54,7 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
             </Card.Text>
           )}
           {!showAnswer && (
-            <Button
-              variant="primary"
-              onClick={() => setShowAnswer((pre) => !pre)}
-            >
+            <Button variant="primary" onClick={() => setShowAnswer(true)}>
               Показать ответ
             </Button>
           )}
@@ -80,10 +82,7 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
           )}
         </Card.Body>
         <Card.Footer className="d-flex justify-content-between text-muted">
-          <Button
-            variant="link"
-            onClick={() => setPosition((pre) => (pre > 0 ? (pre -= 1) : pre))}
-          >
+          <Button variant="link" onClick={goToPreviousCard}>
             предыдущая карта
           </Button>
           <div className="d-flex align-items-center">
