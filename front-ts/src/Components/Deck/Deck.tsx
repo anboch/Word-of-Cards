@@ -22,7 +22,14 @@ export default function Deck({ deck }: { deck: DeckType }) {
   };
   return (
     <div>
-      <Card style={{ width: '18rem', borderRadius: '15px', margin: '2rem' }}>
+      <Card
+        style={{
+          width: '18rem',
+          height: '23rem',
+          borderRadius: '15px',
+          margin: '2rem',
+        }}
+      >
         {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
         <Card.Body>
           <Card.Title>{deck.title}</Card.Title>
