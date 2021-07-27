@@ -55,4 +55,17 @@ router.route('/all').get(async (req, res) => {
   }
 });
 
+router.route('/saveDeck').post(async (req, res) => {
+  const {saveDeck} = req.body;
+  try{
+    const renameDeck = await Deck.findOne({_id:saveDeck._id})
+    renameDeck = saveDeck
+     await renameDeck.save()
+      return res.sendStatus(200)
+    
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 module.exports = router;
