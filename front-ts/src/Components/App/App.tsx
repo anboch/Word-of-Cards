@@ -10,6 +10,7 @@ import Demo from '../Demo/Demo';
 import Navibar from '../NaviBar/Navibar';
 import { Container } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
+import Edit from '../Edit/Edit';
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
 
           <Route exact path="/demo">
             <Demo />
+          </Route>
+
+          <Route exact path="/edit">
+            <Edit />
           </Route>
 
           <Route exact path="/login">
