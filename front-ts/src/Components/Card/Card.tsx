@@ -24,7 +24,7 @@ dispatch(deleteCardSagaAC(id))
 
   return (
    
-    <div className='cardDiv' style={{marginLeft:'175px'}}>
+    <div className='cardDiv' >
       <div className='titleDiv'>
      <p> {card.question}</p>
       <p>{card.answer}</p>

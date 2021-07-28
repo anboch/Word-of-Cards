@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../bd/userShema');
+const mailer = require('../nodemailer')
 
 const router = express.Router();
 
@@ -13,10 +14,21 @@ router
       const newUser = await User.create({ login, email, password });
       req.session.user = newUser;
       res.status(200).json(newUser);
+      const message = {
+        to:newUser.email,
+        subject:'Congratulation',
+        text:`Поздравляем вы успешно зарегестрировались на нашем сайте!
+        ваши данные:
+        login:${newUser.login}
+        password:${newUser.password}
+        Данное письмо не требует ответа!`
+      }
+     mailer(message)
     } else {
       res.status(400).json({ createTodo: false });
     }
   });
+
 
 router
   .route('/login')

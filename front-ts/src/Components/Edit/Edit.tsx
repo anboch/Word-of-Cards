@@ -41,8 +41,8 @@ history.push('/account')
  }
 
   return (
-    <div>
-     <div>
+    <div >
+     <div className='button3'>
        {addQuest && <div className="animate__animated animate__flipInY addQuest">
          <form onSubmit={handleSubmit(addCard)}>
            
@@ -50,7 +50,7 @@ history.push('/account')
          <input {...register('answer')} placeholder='введите ответ' type="text"/>
          <button className="button btn btn-success" >добавить</button>
          </form></div>}
-     {renTitle ? <div >
+     {renTitle ? <div className='editButton' >
        <h2>{state.deckReducer.editedDeck.title}</h2>
        <button className="button btn btn-success" onClick={(pre) => setRenTitle(!pre)}>изменить название колоды</button>
       <div> <button className="button btn btn-dark" onClick={()=>setAddQuest(true)}>добавить карточку</button></div>
@@ -61,13 +61,13 @@ history.push('/account')
       </form>}
        </div>
        <div style={{height:'10px'}}></div>
-       <div >
+       <div className='button2'>
          <button onClick={() => history.push('/account')} 
          className='button btn btn-success'>Выйти без сохранения изменений</button>
          <button onClick={() => saveDeck(state.deckReducer.editedDeck)} className='button btn btn-dark'>Выйти с сохранением изменений</button>
        </div>
        <div style={{height:'10px'}}></div>
-     <div>
+     <div className='button3'>
        {state.deckReducer.editedDeck.cards.map((el) => <Card  card={el}/>)}
      </div>
 

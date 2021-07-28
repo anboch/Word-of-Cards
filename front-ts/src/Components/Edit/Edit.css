@@ -1,18 +1,30 @@
 .button{
   margin: 2px 2px 2px 2px;
+
 }
 
-.titleDiv1{
-  margin-top: 30px;
-  border: 2px solid black;
-  width: 500px;
-border-radius: 10px;
-margin-left: 175px;
-}
+
 .addQuest{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   
+}
+.editButton{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.button2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
