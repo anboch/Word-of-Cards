@@ -21,24 +21,26 @@ deckSchema.statics.clusteringCardsByStatus = async function (userId) {
     const readyToRepeat = [];
     const notReadyToRepeat = [];
     deck.cards.forEach((card) => {
-      let lastAnswerDate = card.lastAnswerDate;
-      if (!typeof lastAnswerDate === 'string') {
-        lastAnswerDate = Date.parse(card.lastAnswerDate);
-      }
-      const daysOfPause = Math.floor(
-        (new Date().getTime() - lastAnswerDate.getTime()) /
-          (1000 * 60 * 60 * 24)
-      );
-      const necessaryDaysOfPause = 2 ** card.levelOfStudy;
-      if (card.levelOfStudy === 1) {
-        notStarted.push(card);
-      } else if (card.levelOfStudy === 8) {
-        learned.push(card);
-      } else {
-        if (daysOfPause >= necessaryDaysOfPause) {
-          readyToRepeat.push(card);
+      if (card) {
+        let lastAnswerDate = card.lastAnswerDate;
+        if (!typeof lastAnswerDate === 'string') {
+          lastAnswerDate = Date.parse(card.lastAnswerDate);
+        }
+        const daysOfPause = Math.floor(
+          (new Date().getTime() - lastAnswerDate.getTime()) /
+            (1000 * 60 * 60 * 24)
+        );
+        const necessaryDaysOfPause = 2 ** card.levelOfStudy;
+        if (card.levelOfStudy === 1) {
+          notStarted.push(card);
+        } else if (card.levelOfStudy === 8) {
+          learned.push(card);
         } else {
-          notReadyToRepeat.push(card);
+          if (daysOfPause >= necessaryDaysOfPause) {
+            readyToRepeat.push(card);
+          } else {
+            notReadyToRepeat.push(card);
+          }
         }
       }
     });
