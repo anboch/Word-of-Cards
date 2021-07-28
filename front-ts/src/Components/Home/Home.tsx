@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import './Home.css'
-import useSound from 'use-sound'
+import { Link } from 'react-router-dom';
+import './Home.css';
+import useSound from 'use-sound';
 // import musicGrom from '../../volue/mol.mp3'
 
 function Home() {
@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <div>
-    <div className='divBigHome'>
+      {/* <div className='divBigHome'>
       <div>
       HOME
       <Link to='/demo' style={{marginLeft:'20px'}}>Demo</Link>
@@ -25,7 +25,7 @@ function Home() {
       </div>
       </div>
       <h1 className="animate__animated animate__zoomIn" style={{color:'blue', fontSize:'100px'}}> WORD OF CARDS </h1>
-      <img className='imgCard' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLRT0gizSf4vKU1d1HtwNMfNLSWhrVxn-yjw&usqp=CAU'/>
+      <img className='imgCard' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLRT0gizSf4vKU1d1HtwNMfNLSWhrVxn-yjw&usqp=CAU'/> */}
     </div>
   );
 }

@@ -41,7 +41,7 @@ router.route('/newCard').post(async (req, res) => {
 // isLogin добавить!
 router.route('/all').get(async (req, res) => {
   try {
-    // заглушку убрать!
+    // заглушку убрать и заменить на req.session.user._id!
     const userOwnerOfDeck = await User.findOne({ login: 'Andrey' });
     const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
       userOwnerOfDeck._id
@@ -55,14 +55,16 @@ router.route('/all').get(async (req, res) => {
   }
 });
 
-router.route('/saveDeck').post(async (req, res) => {
-  const {saveDeck} = req.body;
-  try{
-    const renameDeck = await Deck.findOne({_id:saveDeck._id})
-    renameDeck = saveDeck
-     await renameDeck.save()
-      return res.sendStatus(200)
-    
+// Вернуть одну доску по id
+// isLogin добавить!
+router.route('/').post(async (req, res) => {
+  try {
+    // заглушку убрать и заменить на req.session.user._id!
+    const userDecks = await Deck.find({ userId: '60fbe244a204e748dc39129c' });
+    const deck = userDecks.find(
+      (deck) => deck._id.toString() === req.body.deckId
+    );
+    return res.json({ deck });
   } catch (error) {
     res.status(500).json({ error });
   }

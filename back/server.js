@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const userRouter = require('./routers/userRouter');
 const deckRouter = require('./routers/deckRouter');
-const cardRouter = require('./routers/cardRouter')
+const cardRouter = require('./routers/cardRouter');
 const connectDB = require('./bd/connect');
 const morgan = require('morgan');
 const User = require('./bd/userShema');
@@ -47,10 +47,6 @@ app.use('/card', cardRouter);
 app.listen(PORT ?? 2224, () => {
   console.log(`Server in port ${PORT ?? 2224}`);
 });
-
-const fs = require('fs');
-const Deck = require('./bd/deckShema');
-const Card = require('./bd/cardShema');
 
 //Засеивание базы
 // seader('./bd/cards');

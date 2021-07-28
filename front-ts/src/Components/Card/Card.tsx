@@ -7,7 +7,7 @@ import {useForm} from 'react-hook-form'
 import {renameCardSagaAC} from '../../redux/ActionCreators/Card/renCard'
 
 function Card({card}: {card:any}) {
-  const {register,handleSubmit} = useForm()
+const {register,handleSubmit} = useForm()
 const [inpState , setIntState] = useState(true)
 const dispatch = useDispatch()
 

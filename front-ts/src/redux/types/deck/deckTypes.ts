@@ -5,11 +5,11 @@ export interface DeckType {
   _id: string;
   private: boolean;
   userId: string;
-  cards: Array<CardType>;
-  notStarted: Array<Object>;
-  learned: Array<Object>;
-  readyToRepeat: Array<Object>;
-  notReadyToRepeat: Array<Object>;
+  cards: CardType[];
+  notStarted: CardType[];
+  learned: CardType[];
+  readyToRepeat: CardType[];
+  notReadyToRepeat: CardType[];
 }
 
 export type AllDecksType = DeckType[];

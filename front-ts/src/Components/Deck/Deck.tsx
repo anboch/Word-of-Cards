@@ -10,6 +10,7 @@ import {
   Badge,
   Button,
 } from 'react-bootstrap';
+import { setDeckForGameAC } from '../../redux/ActionCreators/deck/setDeckForGameAC';
 import { DeckType } from '../../redux/types/deck/deckTypes';
 
 export default function Deck({ deck }: { deck: DeckType }) {
@@ -19,12 +20,22 @@ export default function Deck({ deck }: { deck: DeckType }) {
 
   const thisDeck = (deck:DeckType) => {
   dispatch({type:'THIS_DECK', payload:deck})
-  history.push('/account/edit')
+  history.push('/edit')
   }
-
+  const startGameHandler = async (deck: DeckType) => {
+    dispatch(setDeckForGameAC(deck));
+    history.push('/game');
+  };
   return (
     <div>
-      <Card style={{ width: '18rem', borderRadius: '15px', margin: '2rem' }}>
+      <Card
+        style={{
+          width: '18rem',
+          height: '23rem',
+          borderRadius: '15px',
+          margin: '2rem',
+        }}
+      >
         {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
         <Card.Body>
           <Card.Title>{deck.title}</Card.Title>
@@ -73,7 +84,9 @@ export default function Deck({ deck }: { deck: DeckType }) {
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button variant="success">Учить</Button>{' '}
+          <Button variant="success" onClick={() => startGameHandler(deck)}>
+            Учить
+          </Button>{' '}
           <Button onClick={() => thisDeck(deck)} variant="dark">Редактировать</Button>
         </Card.Body>
       </Card>
