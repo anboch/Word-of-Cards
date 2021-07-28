@@ -44,5 +44,9 @@ router.route('/').post(async (req, res) => {
       answer
     });
     return res.status(200).json({newCard} );
+  }catch(error) {
+    res.status(500).json({ error });
+  }
+});
 
-module.exports = router;
+    module.exports = router;

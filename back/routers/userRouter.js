@@ -5,10 +5,7 @@ const router = express.Router();
 
 router
   .route('/signup')
-  // .get(async (req, res) => {
-  //   const todos = await Todo.find();
-  //   res.status(200).json(todos);
-  // })
+
 
   .post(async (req, res) => {
     const { login, email, password } = req.body;
@@ -23,10 +20,6 @@ router
 
 router
   .route('/login')
-  // .get(async (req, res) => {
-  //   const todos = await Todo.find();
-  //   res.status(200).json(todos);
-  // })
 
   .post(async (req, res) => {
     const { login, password } = req.body;
@@ -43,26 +36,6 @@ router
     }
   });
 
-// .post(async (req, res) => {
-//   const { login, email, password } = req.body;
-//   if (login && email && password) {
-//     const newUser = await User.create({login,email,password});
-//     res.status(200).json(newUser);
-//   } else {
-//     res.status(400).json({ createTodo: false });
-//   }
-// })
-// })
 
-//  .put(async(req,res) => {
-//    const renameTodo = await Todo.findById(req.body.id)
-//    renameTodo.title = req.body.title
-//    await renameTodo.save()
-//    if(renameTodo){
-//    res.status(200).json(renameTodo)
-//    } else {
-//      res.status(400).json({rename:false})
-//    }
-//  })
 
 module.exports = router;
