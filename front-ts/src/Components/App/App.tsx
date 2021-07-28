@@ -11,6 +11,7 @@ import Navibar from '../NaviBar/Navibar';
 import { Container } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Edit from '../Edit/Edit';
+import PublicDeckList from '../PublicDeckList/PublicDeckList';
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
 
           <Route exact path="/account">
             <Account />
+          </Route>
+
+          <Route exact path="/public">
+            <PublicDeckList />
           </Route>
 
           <Route exact path="/info">

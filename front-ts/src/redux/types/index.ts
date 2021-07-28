@@ -1,4 +1,4 @@
-import { AllDecksType, EditedDeck,  DeckType} from '../types/deck/deckTypes';
+import { AllDecksType, EditedDeck, DeckType } from '../types/deck/deckTypes';
 
 export interface User {
   _id: string;
@@ -9,6 +9,8 @@ export interface User {
 
 export interface State {
   deckReducer: {
+    allPublicDecks: AllDecksType;
+    copiedDecks: AllDecksType;
     allDecks: AllDecksType;
     editedDeck: EditedDeck;
     deckInGame?: DeckType;

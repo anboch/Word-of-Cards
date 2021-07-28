@@ -52,10 +52,24 @@ export default function Navibar() {
                       />
                       {/* <Button variant="outline-success">Поиск</Button> */}
                     </Form>
+                    <Nav.Link href="/public">Публичные колоды</Nav.Link>
                     <Nav.Link href="/login">Создать колоду</Nav.Link>
                     <Nav.Link href="/logout">Выход</Nav.Link>
                   </Route>
                   <Route exact path="/game">
+                    <Nav.Link href="/account">Мои колоды</Nav.Link>
+                    <Nav.Link href="/logout">Выход</Nav.Link>
+                  </Route>
+                  <Route exact path="/public">
+                    <Form className="d-flex">
+                      <FormControl
+                        type="search"
+                        placeholder="Поиск"
+                        className="mr-2"
+                        aria-label="Search"
+                      />
+                      {/* <Button variant="outline-success">Поиск</Button> */}
+                    </Form>
                     <Nav.Link href="/account">Мои колоды</Nav.Link>
                     <Nav.Link href="/logout">Выход</Nav.Link>
                   </Route>

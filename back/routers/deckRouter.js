@@ -55,6 +55,36 @@ router.route('/all').get(async (req, res) => {
   }
 });
 
+// Показать все публичные доски
+// isLogin добавить!
+router.route('/allpublic').get(async (req, res) => {
+  try {
+    const allPublicDecks = await Deck.find({ private: false });
+    // отсортировать по лайкам!
+    // decksWithClusteredCards.sort(
+    //   (a, b) => b.readyToRepeat.length - a.readyToRepeat.length
+    // );
+    return res.json({ allPublicDecks });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+// Скопировать к себе публичную доску
+// isLogin добавить!
+router.route('/copy').get(async (req, res) => {
+  const { deckId } = req.body;
+
+  try {
+    const deckForCopy = await Deck.findOne({ _id: deckId });
+    const user = await User.findOne({ _id: req.session.user._id });
+    const newDeck = new Deck();
+    return res.json({ allPublicDecks });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 // Вернуть одну доску по id
 // isLogin добавить!
 router.route('/').post(async (req, res) => {
@@ -70,18 +100,16 @@ router.route('/').post(async (req, res) => {
   }
 });
 
-router.route('/renameTitle')
-.post(async (req, res) => {
+router.route('/renameTitle').post(async (req, res) => {
   try {
-   const {deckId, newTitle} = req.body
-   const deck = await Deck.findOne({_id:deckId})
-   deck.title = newTitle
-  await deck.save()
-   res.status(200).json(deck)
+    const { deckId, newTitle } = req.body;
+    const deck = await Deck.findOne({ _id: deckId });
+    deck.title = newTitle;
+    await deck.save();
+    res.status(200).json(deck);
   } catch (error) {
     res.status(500).json({ error });
   }
 });
-
 
 module.exports = router;
