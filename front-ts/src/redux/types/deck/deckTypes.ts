@@ -1,4 +1,4 @@
-import { CardType } from '../card/cardTypes';
+import { CardType } from "../card/cardTypes";
 
 export interface DeckType {
   title: string;
@@ -13,3 +13,5 @@ export interface DeckType {
 }
 
 export type AllDecksType = DeckType[];
+
+export type EditedDeck = DeckType

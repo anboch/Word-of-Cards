@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import {State} from '../../redux/types/index'
+import {useHistory} from 'react-router-dom'
 import {
   Card,
   ListGroup,
@@ -7,15 +10,18 @@ import {
   Badge,
   Button,
 } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { setDeckForGameAC } from '../../redux/ActionCreators/deck/setDeckForGameAC';
 import { DeckType } from '../../redux/types/deck/deckTypes';
 
 export default function Deck({ deck }: { deck: DeckType }) {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useHistory()
+  const state = useSelector((state:State) => state)
+  const dispatch = useDispatch()
 
+  const thisDeck = (deck:DeckType) => {
+  dispatch({type:'THIS_DECK', payload:deck})
+  history.push('/edit')
+  }
   const startGameHandler = async (deck: DeckType) => {
     dispatch(setDeckForGameAC(deck));
     history.push('/game');
@@ -81,7 +87,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
           <Button variant="success" onClick={() => startGameHandler(deck)}>
             Учить
           </Button>{' '}
-          <Button variant="dark">Редактировать</Button>
+          <Button onClick={() => thisDeck(deck)} variant="dark">Редактировать</Button>
         </Card.Body>
       </Card>
     </div>
