@@ -12,7 +12,7 @@ export interface addCardAction extends ActionCard{
 
 export interface addCardSagaAction extends ActionCard{
   type:"ADD_CARD_SAGA";
-  payload: {question:string,answer:string}
+  payload: {deckId:string,question:string,answer:string}
 }
 
 export interface deleteCardAction extends ActionCard {
@@ -20,9 +20,12 @@ export interface deleteCardAction extends ActionCard {
   payload: string
 }
 
-export interface deleteCardSagaAction extends ActionCard {
+export interface DeleteCardSagaAction extends ActionCard {
   type:"DELETE_CARD_SAGA";
-  payload: string
+  payload: {
+    deckId:string,
+    cardId:string
+  }
 }
 
 export interface renameCardAction extends ActionCard {
@@ -37,11 +40,12 @@ export interface renameCardAction extends ActionCard {
 export interface renameCardSagaAction extends ActionCard {
   type:"RENAME_CARD_SAGA";
   payload: {
-    _id:string,
+    deckId:string,
+    cardId:string,
     question:string,
     answer:string
   }
 }
 
 export type ActionsCard = addCardAction | addCardSagaAction 
-| deleteCardAction |deleteCardSagaAction | renameCardAction | renameCardSagaAction
+| deleteCardAction |DeleteCardSagaAction | renameCardAction | renameCardSagaAction

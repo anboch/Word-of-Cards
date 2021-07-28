@@ -6,15 +6,17 @@ import {renameCardAC} from '../ActionCreators/Card/renCard'
 import { resultOfAnswerFetch } from '../ActionCreators/card/resultOfAnswerSagaAC';
 import { CardType } from '../types/card/cardTypes';
 import { CardActionTypes } from '../types/card/deckActionTypes';
+import {fetchDelCardSaga} from '../saga/fetch/fetchDelCardSaga'
+import {fetchRenCardSaga} from '../saga/fetch/fetchRenCardSaga'
 
 export function* warkerAddCard(action: {
   type: string;
-  payload: { question: string; answer: string};
+  payload: {deckId:string, question: string; answer: string};
 }) {
  
   try { 
   const {newCard} = yield call(fetchAddCardSaga, action.payload);
-     console.log(newCard)
+  
     yield put(addCardAC(newCard));
   } catch (e) {
     yield put({ type: 'error', message: e.message });
@@ -22,13 +24,15 @@ export function* warkerAddCard(action: {
 }
 
 export function* warkerDelCard(action: {
+ 
   type: string;
-  payload:  string;
+  payload:{deckId:string,
+    cardId:string}
 }) {
  
   try { 
-
-    yield put(deleteCardAC(action.payload));
+    yield call(fetchDelCardSaga, action.payload);
+    yield put(deleteCardAC(action.payload.cardId));
   } catch (e) {
     yield put({ type: 'error', message: e.message });
   }
@@ -36,14 +40,16 @@ export function* warkerDelCard(action: {
 
 export function* warkerRenCard(action: {
   type: string;
-  payload:  {_id:string,
+  payload:  {deckId:string,
+    cardId:string,
   question: string,
 answer:string};
 }) {
  
   try { 
-  const {_id,question,answer} = action.payload
-    yield put(renameCardAC(_id,question,answer));
+    yield call(fetchRenCardSaga, action.payload);
+  const {cardId,question,answer} = action.payload
+    yield put(renameCardAC(cardId,question,answer));
   } catch (e) {
     yield put({ type: 'error', message: e.message });
   }

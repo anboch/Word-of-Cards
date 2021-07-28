@@ -1,5 +1,5 @@
 
-import {deleteCardAction,deleteCardSagaAction} from "./indexAC";
+import {deleteCardAction,DeleteCardSagaAction} from "./indexAC";
 
 export const deleteCardAC = (_id:string): deleteCardAction => ({
   type: "DELETE_CARD",
@@ -7,8 +7,9 @@ export const deleteCardAC = (_id:string): deleteCardAction => ({
    _id
 });
 
-export const deleteCardSagaAC = (_id:string): deleteCardSagaAction => ({
+export const deleteCardSagaAC = (deckId:string,cardId:string): DeleteCardSagaAction => ({
   type: "DELETE_CARD_SAGA",
-  payload: 
-   _id
+  payload: {deckId,
+    cardId
+  }
 });

@@ -21,11 +21,12 @@ function* downloadDecksWorker() {
 
 function* saveEditDeckWorker(action:{
   type: string;
-  payload: object;
+  payload: {deckId:string,newTitle:string};
 }) {
   try {
-    const renameDeck:object = yield call(saveEditDeckFetch,action.payload);
-    yield put(  saveEditDeckAC (renameDeck));
+  yield call(saveEditDeckFetch,action.payload);
+    
+    yield put(  saveEditDeckAC (action.payload.newTitle));
   } catch (e) {
     yield put({ type: 'ERROR', message: e.message });
   }
@@ -42,6 +43,6 @@ function* getDeckWorker(action: { type: DeckActionTypes; payload: string }) {
   
 export function* deckWatcher() {
   yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
-  // yield takeEvery<DeckActionTypes>('SAVE_RENAME_DECK_SAGA', saveEditDeckWorker);
+  yield takeEvery('SAVE_RENAME_DECK_SAGA', saveEditDeckWorker);
   yield takeEvery('GET_DECK_SAGA', getDeckWorker);
 }

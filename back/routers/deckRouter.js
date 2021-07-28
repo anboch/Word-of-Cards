@@ -70,4 +70,18 @@ router.route('/').post(async (req, res) => {
   }
 });
 
+router.route('/renameTitle')
+.post(async (req, res) => {
+  try {
+   const {deckId, newTitle} = req.body
+   const deck = await Deck.findOne({_id:deckId})
+   deck.title = newTitle
+  await deck.save()
+   res.status(200).json(deck)
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+
 module.exports = router;
