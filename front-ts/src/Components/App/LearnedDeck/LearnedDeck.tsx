@@ -8,34 +8,58 @@ import { DeckType } from '../../../redux/types/deck/deckTypes';
 
 export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
   const [showAnswer, setShowAnswer] = useState(false);
+  const [newCardsMode, setNewCardsMode] = useState(false);
   const [position, setPosition] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const [cardsInGame, setCardsInGame] = useState(deckInGame.readyToRepeat);
   const deckInGameId = deckInGame._id;
-  const cardInGame = deckInGame.readyToRepeat[position];
+
+  useEffect(() => {
+    if (deckInGame.readyToRepeat.length === 0) setNewCardsMode(true);
+  }, [deckInGame]);
+
+  // почему не работает setCardsInGame?
+  useEffect(() => {
+    // console.log('newCardsMode:', newCardsMode);
+    // console.log('cardsInGame1:', cardsInGame);
+    // console.log('deckInGame.notStarted:', deckInGame.notStarted);
+    if (newCardsMode) {
+      // console.log('if=====');
+      setCardsInGame(deckInGame.notStarted);
+    }
+    // console.log('cardsInGame2:', cardsInGame);
+  }, [newCardsMode, cardsInGame, deckInGame]);
 
   const resultOfAnswerHandler = (
     deckInGameId: string,
     cardInGame: CardType,
     remembered: boolean
   ) => {
+    console.log('cardsInGame:', cardsInGame);
     setShowAnswer(false);
     dispatch(resultOfAnswerSagaAC(deckInGameId, cardInGame, remembered));
-    setPosition((pre) =>
-      pre < deckInGame.readyToRepeat.length - 1 ? (pre += 1) : pre
-    );
+    setPosition((pre) => (pre <= cardsInGame.length - 1 ? (pre += 1) : pre));
   };
 
   const goToPreviousCard = () => {
     setPosition((pre) => (pre > 0 ? (pre -= 1) : pre));
     setShowAnswer(false);
   };
-
+  // console.log('cardsInGame46:', cardsInGame);
   useEffect(() => {
-    if (position === deckInGame.readyToRepeat.length - 1)
+    // if (newCardsMode) setCardsInGame(deckInGame.notStarted);
+    if (newCardsMode && position === deckInGame.notStarted.length) {
       history.push('/account');
-  }, [position, deckInGame.readyToRepeat.length, history]);
+    }
+    if (position === cardsInGame.length) {
+      setNewCardsMode(true);
+      setPosition(0);
+    }
+    // console.log('newCardsMode:', newCardsMode);
+    // console.log('position:', position);
+    // console.log('cardsInGame:', cardsInGame);
+  }, [position, cardsInGame, history, newCardsMode, deckInGame]);
 
   return (
     <>
@@ -46,11 +70,11 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
         <Card.Header>{deckInGame.title}</Card.Header>
         <Card.Body className="d-flex align-items-center justify-content-between flex-column">
           {/* <Card.Title>Вопрос</Card.Title> */}
-          <Card.Text>{deckInGame.readyToRepeat[position].question}</Card.Text>
+          <Card.Text>{cardsInGame[position]?.question}</Card.Text>
           {showAnswer && (
             <Card.Text>
               <hr />
-              {deckInGame.readyToRepeat[position].answer}
+              {cardsInGame[position]?.answer}
             </Card.Text>
           )}
           {!showAnswer && (
@@ -58,13 +82,17 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
               Показать ответ
             </Button>
           )}
-          {showAnswer && (
+          {!newCardsMode && showAnswer && (
             <div>
               <Button
                 style={{ width: '8rem' }}
                 variant="secondary"
                 onClick={() =>
-                  resultOfAnswerHandler(deckInGameId, cardInGame, false)
+                  resultOfAnswerHandler(
+                    deckInGameId,
+                    cardsInGame[position],
+                    false
+                  )
                 }
               >
                 Не вспомнил
@@ -73,10 +101,31 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
                 style={{ width: '8rem' }}
                 variant="success"
                 onClick={() =>
-                  resultOfAnswerHandler(deckInGameId, cardInGame, true)
+                  resultOfAnswerHandler(
+                    deckInGameId,
+                    cardsInGame[position],
+                    true
+                  )
                 }
               >
                 Вспомнил
+              </Button>
+            </div>
+          )}
+          {newCardsMode && showAnswer && (
+            <div>
+              <Button
+                style={{ width: '11rem' }}
+                variant="success"
+                onClick={() =>
+                  resultOfAnswerHandler(
+                    deckInGameId,
+                    cardsInGame[position],
+                    true
+                  )
+                }
+              >
+                Следующая карта
               </Button>
             </div>
           )}
@@ -86,7 +135,7 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
             предыдущая карта
           </Button>
           <div className="d-flex align-items-center">
-            {position + 1}/{deckInGame.readyToRepeat.length}
+            {position + 1}/{cardsInGame?.length}
           </div>
         </Card.Footer>
       </Card>

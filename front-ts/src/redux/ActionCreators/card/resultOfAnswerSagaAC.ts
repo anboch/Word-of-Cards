@@ -18,7 +18,7 @@ export const resultOfAnswerFetch = async ({
     headers: { 'Content-Type': 'Application/json' },
     body: JSON.stringify({ deckInGameId, cardInGame, remembered }),
   });
-  const res = await req.json();
+  const res = await req;
   if (req.status === 200) {
     return res;
   } else {
