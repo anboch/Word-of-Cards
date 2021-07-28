@@ -70,16 +70,14 @@ router.route('/').post(async (req, res) => {
   }
 });
 
-router.route('/saveDeck')
+router.route('/renameTitle')
 .post(async (req, res) => {
   try {
-   const newDeck = req.body.saveDeck
-   const oldDeck = await Deck.findOne({_id:newDeck._id})
-   console.log(newDeck.cards[0],"---", oldDeck.cards[0])
-    
- 
-  await oldDeck.save()
-   res.status(200).json(newDeck)
+   const {deckId, newTitle} = req.body
+   const deck = await Deck.findOne({_id:deckId})
+   deck.title = newTitle
+  await deck.save()
+   res.status(200).json(deck)
   } catch (error) {
     res.status(500).json({ error });
   }
