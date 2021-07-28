@@ -135,6 +135,9 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
             предыдущая карта
           </Button>
           <div className="d-flex align-items-center">
+            {newCardsMode && (
+              <span style={{ marginRight: '1rem' }}>новые карточки</span>
+            )}
             {position + 1}/{cardsInGame?.length}
           </div>
         </Card.Footer>

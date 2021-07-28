@@ -17,7 +17,7 @@ router.route('/result').post(async (req, res) => {
     const necessaryDaysOfPause = 2 ** cardInGame.levelOfStudy;
     const delay = daysOfPause - necessaryDaysOfPause;
     newLevelOfStudy = cardInGame.levelOfStudy - Math.ceil(Math.log2(delay)) - 1;
-    if (newLevelOfStudy < 1) newLevelOfStudy = 1;
+    if (newLevelOfStudy < 2) newLevelOfStudy = 2;
   }
   try {
     const findedDeck = await Deck.findOne({ _id: deckInGameId });
