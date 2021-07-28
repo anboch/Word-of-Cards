@@ -1,12 +1,12 @@
 import {SaveRenameDeckAction, SaveRenameDeckSagaAction} from '../../types/deck/deckActionTypes'
 
 
-export const saveEditDeckAC = (deck:object): SaveRenameDeckAction => ({
-  type: 'SAVE_RENAME_DECK',
-  payload:deck
+export const saveEditDeckAC = (newTitle:string): SaveRenameDeckAction => ({
+  type: 'RENAME_TITLE_DECK',
+  payload:newTitle
 });
 
-export const saveEditDeckSagaAC = (deck:object): SaveRenameDeckSagaAction => ({
+export const saveEditDeckSagaAC = (deckId:string,newTitle:string): SaveRenameDeckSagaAction => ({
   type: "SAVE_RENAME_DECK_SAGA",
-  payload:deck
+  payload:{deckId, newTitle}
 });

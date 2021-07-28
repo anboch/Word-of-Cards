@@ -9,6 +9,7 @@ import './Edit.css'
 import { addCardSagaAC } from '../../redux/ActionCreators/Card/addCard';
 import {saveEditDeckSagaAC} from '../../redux/ActionCreators/deck/saveEditDeckAC'
 import {useForm} from 'react-hook-form'
+import { stat } from 'fs';
 
 
 function Edit() {
@@ -21,23 +22,27 @@ function Edit() {
 
  const renameTitleDeck =(e:any) => {
    e.preventDefault()
-   dispatch({type:'RENAME_TITLE_DECK', payload:e.target.title.value})
+  //  dispatch({type:'RENAME_TITLE_DECK', payload:e.target.title.value})
+  const newTitle = e.target.title.value
+  const deckId = state.deckReducer.editedDeck._id
+  dispatch(saveEditDeckSagaAC(deckId,newTitle))
    e.target.title.value=''
    setRenTitle((pre) => !pre)
  }
 
- const saveDeck = (deck:object) => {
-dispatch(saveEditDeckSagaAC(deck))
-history.push('/account')
- }
+//  const saveDeck = (deck:object) => {
+// dispatch(saveEditDeckSagaAC(deck))
+// history.push('/account')
+//  }
 
  const addCard = (event:any) => {
-   setAddQuest(false)
-   const question=event.question
-   const answer=event.answer
-   dispatch(addCardSagaAC(question,
+   
+   const question = event.question
+   const answer = event.answer
+   const deckId = state.deckReducer.editedDeck._id
+   dispatch(addCardSagaAC(deckId,question,
   answer))
-
+  setAddQuest(false)
  }
 
   return (
@@ -56,15 +61,15 @@ history.push('/account')
       <div> <button className="button btn btn-dark" onClick={()=>setAddQuest(true)}>добавить карточку</button></div>
        </div>
       :<form onSubmit={renameTitleDeck}>
-      <input name='title' placeholder='new title'/>
+      <input name='title' placeholder={state.deckReducer.editedDeck.title}/>
       <button className="btn btn-success">OK</button>
       </form>}
        </div>
        <div style={{height:'10px'}}></div>
        <div className='button2'>
          <button onClick={() => history.push('/account')} 
-         className='button btn btn-success'>Выйти без сохранения изменений</button>
-         <button onClick={() => saveDeck(state.deckReducer.editedDeck)} className='button btn btn-dark'>Выйти с сохранением изменений</button>
+         className='button btn btn-success'>Выйти</button>
+         {/* <button onClick={() => saveDeck(state.deckReducer.editedDeck)} className='button btn btn-dark'>Выйти с сохранением изменений</button> */}
        </div>
        <div style={{height:'10px'}}></div>
      <div className='button3'>

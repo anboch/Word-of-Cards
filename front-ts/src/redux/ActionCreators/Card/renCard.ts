@@ -6,8 +6,8 @@ export const renameCardAC = (_id:string,question:string,answer:string): renameCa
    _id, question , answer}
 });
 
-export const renameCardSagaAC = (_id:string,question:string,answer:string): renameCardSagaAction => ({
+export const renameCardSagaAC = (deckId:string,cardId:string,question:string,answer:string): renameCardSagaAction => ({
   type: "RENAME_CARD_SAGA",
   payload: {
-   _id, question , answer}
+    deckId,cardId, question , answer}
 });

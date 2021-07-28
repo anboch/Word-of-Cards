@@ -21,11 +21,12 @@ function* downloadDecksWorker() {
 
 function* saveEditDeckWorker(action:{
   type: string;
-  payload: object;
+  payload: {deckId:string,newTitle:string};
 }) {
   try {
-    const renameDeck:object = yield call(saveEditDeckFetch,action.payload);
-    yield put(  saveEditDeckAC (renameDeck));
+  yield call(saveEditDeckFetch,action.payload);
+    
+    yield put(  saveEditDeckAC (action.payload.newTitle));
   } catch (e) {
     yield put({ type: 'ERROR', message: e.message });
   }
