@@ -49,4 +49,4 @@ app.listen(PORT ?? 2224, () => {
 });
 
 //Засеивание базы
-seader('./bd/cards');
+// seader('./bd/cards');
