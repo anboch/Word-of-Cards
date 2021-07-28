@@ -42,6 +42,6 @@ function* getDeckWorker(action: { type: DeckActionTypes; payload: string }) {
   
 export function* deckWatcher() {
   yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
-  // yield takeEvery<DeckActionTypes>('SAVE_RENAME_DECK_SAGA', saveEditDeckWorker);
+  yield takeEvery('SAVE_RENAME_DECK_SAGA', saveEditDeckWorker);
   yield takeEvery('GET_DECK_SAGA', getDeckWorker);
 }
