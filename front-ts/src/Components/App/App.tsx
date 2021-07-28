@@ -9,6 +9,7 @@ import Info from '../Info/Info';
 import Demo from '../Demo/Demo';
 import Navibar from '../NaviBar/Navibar';
 import { Container } from 'react-bootstrap';
+import Footer from '../Footer/Footer';
 import Edit from '../Edit/Edit';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+            <Footer />
           </Route>
 
           <Route exact path="/signup">
@@ -30,7 +32,7 @@ function App() {
           </Route>
 
           <Route exact path="/edit">
-            <Edit/>
+            <Edit />
           </Route>
 
           <Route exact path="/login">

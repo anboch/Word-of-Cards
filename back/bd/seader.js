@@ -2,6 +2,7 @@ const fs = require('fs');
 const Deck = require('./deckShema');
 const Card = require('./cardShema');
 const User = require('./userShema');
+const { nanoid } = require('nanoid');
 
 const seader = async (folder) => {
   // const folder = './bd/cards';
@@ -21,12 +22,14 @@ const seader = async (folder) => {
       const timeInterval = new Date() - new Date('2020-07-25');
       const randomLastAnswerDate =
         new Date() - Math.ceil(Math.random() * timeInterval);
-      const newCard = new Card({
+      _id = nanoid();
+      const newCard = {
+        _id,
         question,
         answer,
         levelOfStudy: randomLevel,
         lastAnswerDate: new Date(randomLastAnswerDate),
-      });
+      };
       newDeck.cards.push(newCard);
     }
     await newDeck.save();
