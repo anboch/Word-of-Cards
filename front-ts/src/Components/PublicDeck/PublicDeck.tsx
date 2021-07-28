@@ -60,13 +60,13 @@ export default function Deck({ deck }: { deck: DeckType }) {
           <Button
             style={{ margin: '0.25rem' }}
             variant="success"
-            onClick={() => startGameHandler(deck)}
+            onClick={() => copyDeck(deckId)}
           >
             Добавить к себе
           </Button>{' '}
           <Button
             style={{ margin: '0.25rem' }}
-            onClick={() => copyDeck(deckId)}
+            // onClick={() => copyDeck(deckId)}
             variant="dark"
           >
             Подробнее

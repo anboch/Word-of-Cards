@@ -12,7 +12,7 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
   const [position, setPosition] = useState(0);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [cardsInGame, setCardsInGame] = useState(deckInGame.readyToRepeat);
+  const [cardsInGame, setCardsInGame] = useState(deckInGame?.readyToRepeat);
   const deckInGameId = deckInGame._id;
 
   useEffect(() => {
