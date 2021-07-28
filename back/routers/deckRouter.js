@@ -83,5 +83,18 @@ router.route('/renameTitle')
   }
 });
 
+router.route('/status').post(async (req, res) => {
+  const { deckId } = req.body;
+  try {
+    const deck = await Deck.findOne({ _id:deckId });
+    deck.private = !deck.private
+    deck.save()
+    console.log(deck.private)
+    res.status(200).json(deck)
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 
 module.exports = router;

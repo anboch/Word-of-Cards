@@ -22,7 +22,6 @@ function Edit() {
 
  const renameTitleDeck =(e:any) => {
    e.preventDefault()
-  //  dispatch({type:'RENAME_TITLE_DECK', payload:e.target.title.value})
   const newTitle = e.target.title.value
   const deckId = state.deckReducer.editedDeck._id
   dispatch(saveEditDeckSagaAC(deckId,newTitle))
@@ -30,10 +29,6 @@ function Edit() {
    setRenTitle((pre) => !pre)
  }
 
-//  const saveDeck = (deck:object) => {
-// dispatch(saveEditDeckSagaAC(deck))
-// history.push('/account')
-//  }
 
  const addCard = (event:any) => {
    

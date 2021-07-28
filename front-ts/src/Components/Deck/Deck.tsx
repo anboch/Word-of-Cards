@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import './Deck.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../redux/types/index';
 import { useHistory } from 'react-router-dom';
@@ -12,12 +13,12 @@ import {
 } from 'react-bootstrap';
 import { setDeckForGameAC } from '../../redux/ActionCreators/deck/setDeckForGameAC';
 import { DeckType } from '../../redux/types/deck/deckTypes';
+import {deckStatusSagaAC} from '../../redux/ActionCreators/deck/deckStatusSagaAC'
 
 export default function Deck({ deck }: { deck: DeckType }) {
   const history = useHistory();
   const state = useSelector((state: State) => state);
   const dispatch = useDispatch();
-
   const thisDeck = (deck: DeckType) => {
     dispatch({ type: 'THIS_DECK', payload: deck });
     history.push('/edit');
@@ -26,6 +27,13 @@ export default function Deck({ deck }: { deck: DeckType }) {
     dispatch(setDeckForGameAC(deck));
     history.push('/game');
   };
+  useEffect(()=>{
+
+  },[dispatch])
+  const deckStatus  = () => {
+    dispatch(deckStatusSagaAC(deck._id))
+  }
+  
   return (
     <div>
       <Card
@@ -100,17 +108,16 @@ export default function Deck({ deck }: { deck: DeckType }) {
               />
             </ProgressBar>
           </ListGroupItem>
-          <ListGroupItem>
-            {deck.private && (
-              <Badge pill bg="secondary">
-                Приватная колода
-              </Badge>
-            )}
-            {!deck.private && (
-              <Badge pill bg="primary">
-                Публичная колода
-              </Badge>
-            )}
+          <ListGroupItem className='statusDeck'>
+            {deck.private ? 
+             <Badge pill bg="primary" onClick={deckStatus}>
+             Публичная колода
+           </Badge>
+           :
+               <Badge pill bg="secondary" onClick={deckStatus}>
+               Приватная колода
+             </Badge>
+            }
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
