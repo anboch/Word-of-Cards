@@ -86,7 +86,6 @@ router.route("/rename").post(async (req, res) => {
 
     deck.markModified("cards"); //  комманда монгуса для сохранения вложенных обьектов
     await deck.save();
-
     return res.status(200).json(deck);
   } catch (error) {
     res.status(500).json({ error });
