@@ -5,11 +5,13 @@ import { downloadDecksSagaAC } from '../../redux/ActionCreators/deck/downloadDec
 import { State } from '../../redux/types/index';
 import './Account.css';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 
 export default function Account() {
-  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm();
   const state = useSelector((state: State) => state);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     const action = downloadDecksSagaAC();
@@ -19,6 +21,8 @@ export default function Account() {
   const poiskCard = (event: any) => {
     dispatch({ type: 'POISK_CARD', payload: event.poisk });
   };
+
+  !state.userReducer.user._id && /*playTrue()|| */ history.push('/login');
 
   return (
     <div className="glavDiv">

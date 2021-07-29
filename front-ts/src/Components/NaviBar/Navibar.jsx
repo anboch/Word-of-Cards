@@ -7,14 +7,14 @@ import {
   FormControl,
   Button,
 } from 'react-bootstrap';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 
 export default function Navibar() {
   return (
     <>
       <Navbar fixed="top" bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/">
+          <Link to="/" className="navbar-light navbar-brand">
             <img
               alt=""
               src="/logoCards.png"
@@ -23,24 +23,38 @@ export default function Navibar() {
               className="d-inline-block align-top"
             />{' '}
             Word Of Cards
-          </Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <div className="d-flex justify-content-end">
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav></Nav>
               <Nav>
                 <Switch>
                   <Route exact path="/">
-                    <Nav.Link href="/login">Вход</Nav.Link>
-                    <Nav.Link href="/signup">Регистрация</Nav.Link>
+                    <Link to="/login" className="navbar-nav nav-link">
+                      Вход
+                    </Link>
+                    <Link to="/signup" className="navbar-nav nav-link">
+                      Регистрация
+                    </Link>
+                    <Link to="/public" className="navbar-nav nav-link">
+                      Публичные колоды
+                    </Link>
                   </Route>
                   <Route exact path="/login">
-                    <Nav.Link href="/signup">Регистрация</Nav.Link>
-                    <Nav.Link href="/">На главную</Nav.Link>
+                    <Link to="/signup" className="navbar-nav nav-link">
+                      Регистрация
+                    </Link>
+                    <Link to="/" className="navbar-nav nav-link">
+                      На главную
+                    </Link>
                   </Route>
                   <Route exact path="/signup">
-                    <Nav.Link href="/login">Вход</Nav.Link>
-                    <Nav.Link href="/">На главную</Nav.Link>
+                    <Link to="/login" className="navbar-nav nav-link">
+                      Вход
+                    </Link>
+                    <Link to="/" className="navbar-nav nav-link">
+                      На главную
+                    </Link>
                   </Route>
                   <Route exact path="/account">
                     <Form className="d-flex">
@@ -49,16 +63,27 @@ export default function Navibar() {
                         placeholder="Название колоды"
                         className="mr-2"
                         aria-label="Search"
+                        style={{ marginRight: '2rem' }}
                       />
                       {/* <Button variant="outline-success">Поиск</Button> */}
                     </Form>
-                    <Nav.Link href="/public">Публичные колоды</Nav.Link>
-                    <Nav.Link href="/login">Создать колоду</Nav.Link>
-                    <Nav.Link href="/logout">Выход</Nav.Link>
+                    <Link to="/public" className="navbar-nav nav-link">
+                      Публичные колоды
+                    </Link>
+                    <Link to="/login" className="navbar-nav nav-link">
+                      Создать колоду
+                    </Link>
+                    <Link to="/logout" className="navbar-nav nav-link">
+                      Выход
+                    </Link>
                   </Route>
                   <Route exact path="/game">
-                    <Nav.Link href="/account">Мои колоды</Nav.Link>
-                    <Nav.Link href="/logout">Выход</Nav.Link>
+                    <Link to="/account" className="navbar-nav nav-link">
+                      Мои колоды
+                    </Link>
+                    <Link to="/logout" className="navbar-nav nav-link">
+                      Выход
+                    </Link>
                   </Route>
                   <Route exact path="/public">
                     <Form className="d-flex">
@@ -67,11 +92,16 @@ export default function Navibar() {
                         placeholder="Поиск"
                         className="mr-2"
                         aria-label="Search"
+                        style={{ marginRight: '2rem' }}
                       />
                       {/* <Button variant="outline-success">Поиск</Button> */}
                     </Form>
-                    <Nav.Link href="/account">Мои колоды</Nav.Link>
-                    <Nav.Link href="/logout">Выход</Nav.Link>
+                    <Link to="/account" className="navbar-nav nav-link">
+                      Мои колоды
+                    </Link>
+                    <Link to="/logout" className="navbar-nav nav-link">
+                      Выход
+                    </Link>
                   </Route>
                 </Switch>
               </Nav>
