@@ -1,6 +1,8 @@
 const express = require('express');
 const User = require('../bd/userShema');
 const mailer = require('../nodemailer');
+const { COOKIE_NAME } = process.env;
+const { isLogin, notLogin } = require('../middlewares/authMdw');
 
 const router = express.Router();
 
@@ -45,5 +47,15 @@ router
       res.status(400).json({ loginUser: false });
     }
   });
+
+// Выход из учетной записи
+router.route('/logout').get((req, res) => {
+  req.session.destroy(); // удаляем сессию
+  // console.log('req.cookie:', req);
+  // if (req.cookie[`${COOKIE_NAME}`]) {
+  //   res.clearCookie(COOKIE_NAME); // удаляем куки
+  // }
+  res.sendStatus(200);
+});
 
 module.exports = router;

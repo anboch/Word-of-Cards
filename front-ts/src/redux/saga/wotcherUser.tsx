@@ -3,6 +3,8 @@ import { fetchLoginUserSaga } from './fetch/fetchLoginUserSaga';
 import { fetchAddUserSaga } from './fetch/fetchAddUserSaga';
 import { addUserAC } from '../ActionCreators/User/addUserAC';
 import { ActionUserType } from '../types/actionUser';
+import { logoutAC } from '../ActionCreators/User/logoutAC';
+import { fetchLogout } from './fetch/fetchLogout';
 //add user
 export function* workerAddUser(action: {
   type: string;
@@ -39,7 +41,17 @@ export function* workerLoginUser(action: {
   }
 }
 
+export function* workerLogout() {
+  try {
+    yield call(fetchLogout);
+    yield put(logoutAC());
+  } catch (e) {
+    yield put({ type: 'error', message: e.message });
+  }
+}
+
 export function* wotcher() {
   yield takeEvery('ADD_USER_SAGA', workerAddUser);
   yield takeEvery('LOGIN_USER_SAGA', workerLoginUser);
+  yield takeEvery('LOGOUT_SAGA', workerLogout);
 }

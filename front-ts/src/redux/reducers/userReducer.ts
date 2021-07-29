@@ -9,7 +9,6 @@ export const userReducer = (
   userReducer: State['userReducer'] = init,
   action: ActionsUser
 ) => {
-  console.log('userReducer:');
   switch (action.type) {
     case 'ADD_USER':
       const newUser: User = {
@@ -19,6 +18,8 @@ export const userReducer = (
         password: action.payload.password,
       };
       return { ...userReducer, user: newUser };
+    case 'LOGOUT':
+      return { ...userReducer, user: init };
 
     default:
       return userReducer;

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logoutSagaAC } from '../../redux/ActionCreators/User/logoutAC';
 import {
   Navbar,
   Container,
@@ -7,9 +9,19 @@ import {
   FormControl,
   Button,
 } from 'react-bootstrap';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, useHistory } from 'react-router-dom';
 
 export default function Navibar() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logoutSagaAC());
+    document.cookie =
+      'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    // history.push('/');
+  };
+
   return (
     <>
       <Navbar fixed="top" bg="light" expand="lg">
@@ -73,7 +85,10 @@ export default function Navibar() {
                     <Link to="/newDeck" className="navbar-nav nav-link">
                       Создать колоду
                     </Link>
-                    <Link to="/logout" className="navbar-nav nav-link">
+                    <Link
+                      onClick={logoutHandler}
+                      className="navbar-nav nav-link"
+                    >
                       Выход
                     </Link>
                   </Route>
@@ -81,7 +96,10 @@ export default function Navibar() {
                     <Link to="/account" className="navbar-nav nav-link">
                       Мои колоды
                     </Link>
-                    <Link to="/logout" className="navbar-nav nav-link">
+                    <Link
+                      onClick={logoutHandler}
+                      className="navbar-nav nav-link"
+                    >
                       Выход
                     </Link>
                   </Route>
@@ -94,12 +112,14 @@ export default function Navibar() {
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
                       />
-                    
                     </Form>
                     <Link to="/account" className="navbar-nav nav-link">
                       Мои колоды
                     </Link>
-                    <Link to="/logout" className="navbar-nav nav-link">
+                    <Link
+                      onClick={logoutHandler}
+                      className="navbar-nav nav-link"
+                    >
                       Выход
                     </Link>
                   </Route>
