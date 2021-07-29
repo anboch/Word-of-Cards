@@ -7,7 +7,10 @@ export type DeckActionTypes = 'DOWNLOAD_DECKS' | 'DOWNLOAD_DECKS_SAGA'
 | 'DOWNLOAD_DECKS_SAGA'
 | 'GET_DECK'
 | 'GET_DECK_SAGA'
-| 'SET_DECK_FOR_GAME'|'DELETE_CARD_SAGA'|'STATUS_DECK_SAGA'|'STATUS_DECK'
+| 'SET_DECK_FOR_GAME'|'DELETE_CARD_SAGA'|'STATUS_DECK_SAGA'|'STATUS_DECK'| 'GET_PUBLIC_DECKS'
+| 'GET_PUBLIC_DECKS_SAGA'
+| 'COPY_DECK'
+| 'COPY_DECK_SAGA'  | 'SET_DECK_FOR_GAME'
 
 interface DeckAction {
   type: DeckActionTypes;
@@ -23,6 +26,26 @@ export interface DownloadDecksSagaAction extends DeckAction {
   type: 'DOWNLOAD_DECKS_SAGA';
 }
 
+export interface GetPublicDecksAction extends DeckAction {
+  type: 'GET_PUBLIC_DECKS';
+  payload: AllDecksType;
+  message?: string;
+}
+
+export interface GetPublicDecksSagaAction extends DeckAction {
+  type: 'GET_PUBLIC_DECKS_SAGA';
+}
+
+export interface CopyDeckAction extends DeckAction {
+  type: 'COPY_DECK';
+  payload: DeckType;
+}
+
+export interface CopyDeckSagaAction extends DeckAction {
+  type: 'COPY_DECK_SAGA';
+  payload: string;
+}
+
 //editedDeck
 
 export interface ThisDeckAction extends DeckAction {
@@ -32,7 +55,7 @@ export interface ThisDeckAction extends DeckAction {
 
 export interface ThisDeckSagaAction extends DeckAction {
   type: 'THIS_DECK_SAGA';
-  payload:string;
+  payload: string;
 }
 
 //reneme title deck
@@ -43,28 +66,28 @@ export interface RenameDeckAction extends DeckAction {
 }
 // delete card
 export interface DeleteCard extends DeckAction {
-  type:'DELETE_CARD';
-  payload:string
+  type: 'DELETE_CARD';
+  payload: string;
 }
 
 export interface DeleteCardSagaAction extends DeckAction {
-  type:'DELETE_CARD_SAGA';
-  payload:{
-    deckId:string,
-    cardId:string
-  }
+  type: 'DELETE_CARD_SAGA';
+  payload: {
+    deckId: string;
+    cardId: string;
+  };
 }
 
-//save rename edit Deck 
+//save rename edit Deck
 
 export interface SaveRenameDeckSagaAction extends DeckAction {
   type: 'SAVE_RENAME_DECK_SAGA';
-  payload: {deckId:string,newTitle:string};
+  payload: { deckId: string; newTitle: string };
 }
 
 export interface SaveRenameDeckAction extends DeckAction {
-  type:'RENAME_TITLE_DECK';
-  payload:string
+  type: 'RENAME_TITLE_DECK';
+  payload: string;
 }
 
 export interface StatusDeckSagaAction extends DeckAction {
@@ -83,21 +106,21 @@ export interface AddCardAction extends DeckAction {
 }
 //rename card
 export interface RenameCardAction extends DeckAction {
-  type:'RENAME_CARD';
-  payload:{
-    question:string,
-    answer:string,
-    _id:string
-  }
+  type: 'RENAME_CARD';
+  payload: {
+    question: string;
+    answer: string;
+    _id: string;
+  };
 }
 
 export interface RenameCardSagaAction extends DeckAction {
-  type:'RENAME_CARD_SAGA';
-  payload:{
-    question:string,
-    answer:string,
-    _id:string
-  }
+  type: 'RENAME_CARD_SAGA';
+  payload: {
+    question: string;
+    answer: string;
+    _id: string;
+  };
 }
 
 export interface GetDeckAction extends DeckAction {
@@ -125,4 +148,7 @@ export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction
 | SetDeckForGameAction
 |DeleteCardSagaAction
 |StatusDeckAction
-|StatusDeckSagaAction
+|StatusDeckSagaAction| GetPublicDecksAction
+| GetPublicDecksSagaAction
+| CopyDeckAction
+| CopyDeckSagaAction
