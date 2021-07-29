@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Home.css';
 import useSound from 'use-sound';
+import { State } from '../../redux/types';
+import { useSelector } from 'react-redux';
 // import musicGrom from '../../volue/mol.mp3'
 
 function Home() {
@@ -10,7 +12,9 @@ function Home() {
   //   { volume: 0.2 }
   // );
   // playGrom()
-
+  const history = useHistory();
+  const state = useSelector((state: State) => state);
+  state.userReducer.user._id && /*playTrue()|| */ history.push('/account');
   return (
     <div>
       {/* <div className='divBigHome'>
