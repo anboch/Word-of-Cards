@@ -1,8 +1,9 @@
-.statusDeck{
+.inp {
   display: flex;
+  flex-direction: row;
+  margin-top: 20px;
   justify-content: center;
   align-items: center;
+ 
 }
-.private {
-  background-color: deeppink;
-}
+

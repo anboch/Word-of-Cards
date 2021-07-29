@@ -19,3 +19,51 @@
   width: auto;
   height: auto;
 }
+.bigDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between
+}
+.litlDiv{
+  font-size: 60px;
+  background-color: rgb(235, 189, 204);
+  padding: 20px 80px 20px 20px;
+  border-radius: 5px;
+ 
+}
+
+
+@keyframes vertical-move {
+  from, to   {top: 0px;}
+  25%, 75%  {top: 500px;}
+}
+
+.page-enter-active {
+  animation: gr 5s forwards;
+}
+.page-exit-active {
+  animation: gr 5s forwards;
+}
+@keyframes gr {
+  0% {background-color: green;}
+  50% {background-color: yellow}
+  100% {background-color:red}
+
+}
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

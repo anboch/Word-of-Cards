@@ -14,6 +14,7 @@ export interface State {
     allDecks: AllDecksType;
     editedDeck: EditedDeck;
     deckInGame?: DeckType;
+    poisk:string;
   };
   userReducer: {
     user: User;

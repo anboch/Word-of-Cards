@@ -17,7 +17,7 @@ router
       const message = {
         to:newUser.email,
         subject:'Congratulation',
-        text:`Поздравляем вы успешно зарегестрировались на нашем сайте!
+        text:`Поздравляем вы успешно зарегестрировались на нашем сайте -WORD OF CARDS-!
         ваши данные:
         login:${newUser.login}
         password:${newUser.password}

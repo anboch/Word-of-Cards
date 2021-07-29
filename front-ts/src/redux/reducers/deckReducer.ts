@@ -17,7 +17,7 @@ const init: State['deckReducer'] = {
     learned: [],
     readyToRepeat: [],
     notReadyToRepeat: [],
-  },
+  },poisk:'',
 };
 
 export const deckReducer = (
@@ -95,6 +95,8 @@ case 'SET_DECK_FOR_GAME':
     })};
     case 'ADD_DECK':
       return {...deckReducer, allDecks:[...deckReducer.allDecks,action.payload]} ;
+      case 'POISK':
+        return {...deckReducer,poisk:action.payload}
     default:
       return deckReducer;
   }

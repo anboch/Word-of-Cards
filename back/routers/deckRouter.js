@@ -9,36 +9,19 @@ const router = require('express').Router();
 // isLogin добавить!
 router.route('/new').post(async (req, res) => {
   const { title,private} = req.body;
-  
   try {
     const newDeck = await Deck.create({
       title,
       private,
       userId: req.session.user._id,
     });
-    console.log(newDeck)
     return res.json({ newDeck });
   } catch (error) {
     res.status(500).json({ error });
   }
 });
 
-// Новая карта
-// isLogin добавить!
-// router.route('/newCard').post(async (req, res) => {
-//   const { _id, card } = req.body;
-//   try {
-//     const deck = await Deck.find({ _id });
-//     if (deck.userId === req.session.userId) {
-//       const newCard = new Card();
-//       deck.cards.push(newCard);
-//       await deck.save();
-//       return res.json({ deck });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error });
-//   }
-// });
+
 
 // Показать все доски юзера
 // isLogin добавить!
@@ -77,8 +60,6 @@ router.route('/allpublic').get(async (req, res) => {
 // isLogin добавить!
 router.route('/copy').post(async (req, res) => {
   const { deckId } = req.body;
-  console.log('req.body:', req.body);
-
   try {
     const deckForCopy = await Deck.findOne({ _id: deckId });
     console.log('deckForCopy:', deckForCopy);

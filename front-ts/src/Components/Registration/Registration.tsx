@@ -117,9 +117,9 @@ function Registration() {
             We'll never share your email with anyone else.
           </Form.Text> */}
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+        </Form.Group> */}
         <Button variant="primary" type="submit">
           Войти
         </Button>
