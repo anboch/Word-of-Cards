@@ -72,7 +72,7 @@ export default function Navibar() {
                     <Form className="d-flex">
                       <FormControl
                         type="search"
-                        placeholder="Название колоды"
+                        placeholder="🔍︎ Название колоды "
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
@@ -86,7 +86,7 @@ export default function Navibar() {
                     <Link to="/newDeck" className="navbar-nav nav-link">
                       Создать колоду
                     </Link>
-                    <Link to="/logout" className="navbar-nav nav-link">
+                    <Link to="/" className="navbar-nav nav-link">
                       Выход
                     </Link>
                   </Route>
@@ -102,7 +102,7 @@ export default function Navibar() {
                     <Form className="d-flex">
                       <FormControl
                         type="search"
-                        placeholder="Поиск"
+                        placeholder="🔍︎ Поиск "
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
@@ -121,7 +121,7 @@ export default function Navibar() {
                   <Form className="d-flex">
                       <FormControl
                         type="search"
-                        placeholder="Поиск"
+                        placeholder="🔍︎ Поиск "
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
