@@ -1,12 +1,13 @@
 const express = require('express');
 const User = require('../bd/userShema');
-const mailer = require('../nodemailer')
+const mailer = require('../nodemailer');
+const { COOKIE_NAME } = process.env;
+const { isLogin, notLogin } = require('../middlewares/authMdw');
 
 const router = express.Router();
 
 router
   .route('/signup')
-
 
   .post(async (req, res) => {
     const { login, email, password } = req.body;
@@ -15,20 +16,19 @@ router
       req.session.user = newUser;
       res.status(200).json(newUser);
       const message = {
-        to:newUser.email,
-        subject:'Congratulation',
-        text:`Поздравляем вы успешно зарегестрировались на нашем сайте -WORD OF CARDS-!
-        ваши данные:
+        to: newUser.email,
+        subject: 'World of cards',
+        text: `Поздравляем, Вы успешно зарегестрировались на нашем сайте!
+        Ваши данные:
         login:${newUser.login}
         password:${newUser.password}
-        Данное письмо не требует ответа!`
-      }
-     mailer(message)
+        Данное письмо не требует ответа!`,
+      };
+      mailer(message);
     } else {
       res.status(400).json({ createTodo: false });
     }
   });
-
 
 router
   .route('/login')
@@ -48,6 +48,14 @@ router
     }
   });
 
-
+// Выход из учетной записи
+router.route('/logout').get((req, res) => {
+  req.session.destroy(); // удаляем сессию
+  // console.log('req.cookie:', req);
+  // if (req.cookie[`${COOKIE_NAME}`]) {
+  //   res.clearCookie(COOKIE_NAME); // удаляем куки
+  // }
+  res.sendStatus(200);
+});
 
 module.exports = router;
