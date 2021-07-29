@@ -16,7 +16,10 @@ function Edit() {
   const dispatch = useDispatch();
   const [renTitle, setRenTitle] = useState(true);
   const [addQuest, setAddQuest] = useState(false);
-  const [poiskCard, setPoiskCard] = useState('');
+  const [editedDeckTitle, setEditedDeckTitle] = useState(
+    state.deckReducer.editedDeck.title
+  );
+  // const [poiskCard, setPoiskCard] = useState('');
 
   const renameTitleDeck = (e: any) => {
     e.preventDefault();
@@ -30,8 +33,10 @@ function Edit() {
   const addCard = (event: any) => {
     const question = event.question;
     const answer = event.answer;
-    const deckId = state.deckReducer.editedDeck._id;
-    dispatch(addCardSagaAC(deckId, question, answer));
+    if (question && answer) {
+      const deckId = state.deckReducer.editedDeck._id;
+      dispatch(addCardSagaAC(deckId, question, answer));
+    }
     setAddQuest(false);
   };
 
@@ -40,91 +45,9 @@ function Edit() {
   );
 
   return (
-    // <div>
-    //   <div className="button3">
-    //     {addQuest && (
-    //       <div className="animate__animated animate__flipInY addQuest">
-    //         <form onSubmit={handleSubmit(addCard)}>
-    //           <input
-    //             {...register('question')}
-    //             placeholder="введите вопрос"
-    //             type="text"
-    //           />
-    //           <input
-    //             {...register('answer')}
-    //             placeholder="введите ответ"
-    //             type="text"
-    //           />
-    //           <button className="button btn btn-success">добавить</button>
-    //         </form>
-    //       </div>
-    //     )}
-    //     {renTitle ? (
-    //       <div className="editButton">
-    //         <h2>{state.deckReducer.editedDeck.title}</h2>
-    //         <button
-    //           className="button btn btn-success"
-    //           onClick={(pre) => setRenTitle(!pre)}
-    //         >
-    //           изменить название колоды
-    //         </button>
-    //         <div>
-    //           {' '}
-    //           <button
-    //             className="button btn btn-dark"
-    //             onClick={() => setAddQuest(true)}
-    //           >
-    //             добавить карточку
-    //           </button>
-    //         </div>
-    //       </div>
-    //     ) : (
-    //       <form onSubmit={renameTitleDeck}>
-    //         <input
-    //           name="title"
-    //           placeholder={state.deckReducer.editedDeck.title}
-    //         />
-    //         <button className="btn btn-success">OK</button>
-    //       </form>
-    //     )}
-    //   </div>
-    //   <div style={{ height: '10px' }}></div>
-    //   <div className="button2">
-    //     <button
-    //       onClick={() => history.push('/account')}
-    //       className="button btn btn-success"
-    //     >
-    //       Выйти
-    //     </button>
-    //     {/* <button onClick={() => saveDeck(state.deckReducer.editedDeck)} className='button btn btn-dark'>Выйти с сохранением изменений</button> */}
-    //   </div>
-    //   <div style={{ height: '10px' }}></div>
-    //   <div className="button3 flex-column-reverse flex-wrap">
-    //     {state.deckReducer.editedDeck.cards.map((el) => (
-    //       <Card card={el} />
-    //     ))}
-    //   </div>
-    // <div >
     <div>
-      <div className="button3">
-        {addQuest && (
-          <div className="animate__animated animate__flipInY addQuest">
-            <form onSubmit={handleSubmit(addCard)}>
-              <input
-                {...register('question')}
-                placeholder="введите вопрос"
-                type="text"
-              />
-              <input
-                {...register('answer')}
-                placeholder="введите ответ"
-                type="text"
-              />
-              <button className="button btn btn-success">добавить</button>
-            </form>
-          </div>
-        )}
-        {renTitle ? (
+      <div className="editDeck">
+        {renTitle && (
           <div className="editButton">
             <h2>{state.deckReducer.editedDeck.title}</h2>
             <button
@@ -143,19 +66,40 @@ function Edit() {
               </button>
             </div>
           </div>
-        ) : (
-          <form onSubmit={renameTitleDeck}>
-            <input
-              name="title"
-              placeholder={state.deckReducer.editedDeck.title}
-            />
-            <button className="btn btn-success">OK</button>
-          </form>
         )}
+        <div>
+          {!renTitle && (
+            <form onSubmit={renameTitleDeck}>
+              <input
+                name="title"
+                onChange={(e) => setEditedDeckTitle(e.target.value)}
+                value={editedDeckTitle}
+              />
+              <button className="btn btn-success">OK</button>
+            </form>
+          )}
+          {addQuest && (
+            <div className="animate__animated animate__flipInY addQuest">
+              <form onSubmit={handleSubmit(addCard)}>
+                <input
+                  {...register('question')}
+                  placeholder="введите вопрос"
+                  type="text"
+                />
+                <input
+                  {...register('answer')}
+                  placeholder="введите ответ"
+                  type="text"
+                />
+                <button className="button btn btn-success">добавить</button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
       <div style={{ height: '10px' }}></div>
       <div style={{ height: '10px' }}></div>
-      <div className="button3">
+      <div className="listOfCards">
         {sortArrCard.map((el) => (
           <Card card={el} />
         ))}

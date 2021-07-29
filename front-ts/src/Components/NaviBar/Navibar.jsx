@@ -93,6 +93,7 @@ export default function Navibar() {
                       Создать колоду
                     </Link>
                     <Link
+                      to="/"
                       onClick={logoutHandler}
                       className="navbar-nav nav-link"
                     >
@@ -143,7 +144,7 @@ export default function Navibar() {
                       />
                     </Form>
                     <Link to="/account" className="navbar-nav nav-link">
-                      Выйти
+                      Мои колоды
                     </Link>
                   </Route>
                 </Switch>
