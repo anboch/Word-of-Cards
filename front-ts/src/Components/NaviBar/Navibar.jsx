@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
   Navbar,
   Container,
@@ -8,8 +8,20 @@ import {
   Button,
 } from 'react-bootstrap';
 import { Route, Switch, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {poiskSagakAC} from '../../redux/ActionCreators/deck/poiskAC'
 
 export default function Navibar() {
+  const dispatch = useDispatch()
+  const [poiskDeck,setPoiskDeck] = useState('')
+
+  const poisk = (e) =>{
+  // dispatch(poiskSagakAC(e.target.value))
+  dispatch({type:'POISK',payload:e.target.value})
+
+  }
+
+
   return (
     <>
       <Navbar fixed="top" bg="light" expand="lg">
@@ -64,8 +76,9 @@ export default function Navibar() {
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
+                        onChange={(e) => poisk(e)}
                       />
-                      {/* <Button variant="outline-success">Поиск</Button> */}
+                     
                     </Form>
                     <Link to="/public" className="navbar-nav nav-link">
                       Публичные колоды
@@ -93,6 +106,7 @@ export default function Navibar() {
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
+                        onChange={(e) => poisk(e)}
                       />
                     
                     </Form>
@@ -101,6 +115,22 @@ export default function Navibar() {
                     </Link>
                     <Link to="/logout" className="navbar-nav nav-link">
                       Выход
+                    </Link>
+                  </Route>
+                  <Route exact path='/edit'>
+                  <Form className="d-flex">
+                      <FormControl
+                        type="search"
+                        placeholder="Поиск"
+                        className="mr-2"
+                        aria-label="Search"
+                        style={{ marginRight: '2rem' }}
+                        onChange={(e) => poisk(e)}
+                      />
+                    
+                    </Form>
+                  <Link to="/account" className="navbar-nav nav-link">
+                      Выйти
                     </Link>
                   </Route>
                 </Switch>
