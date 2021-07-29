@@ -1,12 +1,11 @@
 const express = require('express');
 const User = require('../bd/userShema');
-const mailer = require('../nodemailer')
+const mailer = require('../nodemailer');
 
 const router = express.Router();
 
 router
   .route('/signup')
-
 
   .post(async (req, res) => {
     const { login, email, password } = req.body;
@@ -15,20 +14,19 @@ router
       req.session.user = newUser;
       res.status(200).json(newUser);
       const message = {
-        to:newUser.email,
-        subject:'Congratulation',
-        text:`Поздравляем вы успешно зарегестрировались на нашем сайте!
-        ваши данные:
+        to: newUser.email,
+        subject: 'World of cards',
+        text: `Поздравляем, Вы успешно зарегестрировались на нашем сайте!
+        Ваши данные:
         login:${newUser.login}
         password:${newUser.password}
-        Данное письмо не требует ответа!`
-      }
-     mailer(message)
+        Данное письмо не требует ответа!`,
+      };
+      mailer(message);
     } else {
       res.status(400).json({ createTodo: false });
     }
   });
-
 
 router
   .route('/login')
@@ -47,7 +45,5 @@ router
       res.status(400).json({ loginUser: false });
     }
   });
-
-
 
 module.exports = router;

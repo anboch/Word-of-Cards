@@ -8,15 +8,15 @@ const router = require('express').Router();
 // Новая колода
 // isLogin добавить!
 router.route('/new').post(async (req, res) => {
-  const { title,private} = req.body;
-  
+  const { title, private } = req.body;
+
   try {
     const newDeck = await Deck.create({
       title,
       private,
       userId: req.session.user._id,
     });
-    console.log(newDeck)
+    console.log(newDeck);
     return res.json({ newDeck });
   } catch (error) {
     res.status(500).json({ error });
@@ -40,11 +40,35 @@ router.route('/new').post(async (req, res) => {
 //   }
 // });
 
+// Показать все публичные доски
+// isLogin добавить!
+router.route('/allpublic').get(async (req, res) => {
+  try {
+    const allPublicDecks = await Deck.find({ private: false });
+    console.log('req.session.user._id:', req.session.user._id);
+    if (req.session.user._id) {
+      // отсортировать по лайкам!
+      // decksWithClusteredCards.sort(
+      //   (a, b) => b.readyToRepeat.length - a.readyToRepeat.length
+      // );
+      const allPublicStrangeDecks = allPublicDecks.filter(
+        (deck) => deck.userId != req.session.user._id
+      );
+      console.log('allPublicStrangeDecks:', allPublicStrangeDecks);
+      return res.json({ allPublicDecks: allPublicStrangeDecks });
+    } else {
+      return res.json({ allPublicDecks });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 // Показать все доски юзера
 // isLogin добавить!
 router.route('/all').get(async (req, res) => {
   try {
-    // заглушку убрать и заменить на req.session.user._id!
+    console.log('req.session.user._id:', req.session.user._id);
     const userOwnerOfDeck = await User.findOne({ _id: req.session.user._id });
     const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
       userOwnerOfDeck._id
@@ -53,21 +77,6 @@ router.route('/all').get(async (req, res) => {
       (a, b) => b.readyToRepeat.length - a.readyToRepeat.length
     );
     return res.json({ decksWithClusteredCards });
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-});
-
-// Показать все публичные доски
-// isLogin добавить!
-router.route('/allpublic').get(async (req, res) => {
-  try {
-    const allPublicDecks = await Deck.find({ private: false });
-    // отсортировать по лайкам!
-    // decksWithClusteredCards.sort(
-    //   (a, b) => b.readyToRepeat.length - a.readyToRepeat.length
-    // );
-    return res.json({ allPublicDecks });
   } catch (error) {
     res.status(500).json({ error });
   }
@@ -134,15 +143,14 @@ router.route('/renameTitle').post(async (req, res) => {
 router.route('/status').post(async (req, res) => {
   const { deckId } = req.body;
   try {
-    const deck = await Deck.findOne({ _id:deckId });
-    deck.private = !deck.private
-    deck.save()
-    console.log(deck.private)
-    res.status(200).json(deck)
+    const deck = await Deck.findOne({ _id: deckId });
+    deck.private = !deck.private;
+    deck.save();
+    console.log(deck.private);
+    res.status(200).json(deck);
   } catch (error) {
     res.status(500).json({ error });
   }
 });
-
 
 module.exports = router;
