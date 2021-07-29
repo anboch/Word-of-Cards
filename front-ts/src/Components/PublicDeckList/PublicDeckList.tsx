@@ -15,13 +15,16 @@ export default function PublicDeckList() {
     dispatch(action);
   }, [dispatch]);
 
+  const sortArr = state.deckReducer.allPublicDecks.filter(el => 
+    el.title.toUpperCase().includes(state.deckReducer.poisk.toUpperCase()))
+  
   return (
     <div className="glavDiv">
       <Container
         className="d-flex justify-content-around flex-wrap"
         style={{ paddingTop: '2rem', minWidth: '20rem' }}
       >
-        {state.deckReducer.allPublicDecks?.map((deck) => (
+        {sortArr?.map((deck) => (
           <PublicDeck key={deck._id} deck={deck} />
         ))}
       </Container>

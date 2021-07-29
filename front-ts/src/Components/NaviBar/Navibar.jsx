@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { poiskSagakAC } from '../../redux/ActionCreators/deck/poiskAC';
 import { logoutSagaAC } from '../../redux/ActionCreators/User/logoutAC';
 import {
   Navbar,
@@ -14,6 +15,12 @@ import { Route, Switch, Link, useHistory } from 'react-router-dom';
 export default function Navibar() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [poiskDeck, setPoiskDeck] = useState('');
+
+  const poisk = (e) => {
+    // dispatch(poiskSagakAC(e.target.value))
+    dispatch({ type: 'POISK', payload: e.target.value });
+  };
 
   const logoutHandler = () => {
     dispatch(logoutSagaAC());
@@ -72,12 +79,12 @@ export default function Navibar() {
                     <Form className="d-flex">
                       <FormControl
                         type="search"
-                        placeholder="Название колоды"
+                        placeholder="🔍︎ Название колоды "
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
+                        onChange={(e) => poisk(e)}
                       />
-                      {/* <Button variant="outline-success">Поиск</Button> */}
                     </Form>
                     <Link to="/public" className="navbar-nav nav-link">
                       Публичные колоды
@@ -107,10 +114,11 @@ export default function Navibar() {
                     <Form className="d-flex">
                       <FormControl
                         type="search"
-                        placeholder="Поиск"
+                        placeholder="🔍︎ Поиск "
                         className="mr-2"
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
+                        onChange={(e) => poisk(e)}
                       />
                     </Form>
                     <Link to="/account" className="navbar-nav nav-link">
@@ -121,6 +129,21 @@ export default function Navibar() {
                       className="navbar-nav nav-link"
                     >
                       Выход
+                    </Link>
+                  </Route>
+                  <Route exact path="/edit">
+                    <Form className="d-flex">
+                      <FormControl
+                        type="search"
+                        placeholder="🔍︎ Поиск "
+                        className="mr-2"
+                        aria-label="Search"
+                        style={{ marginRight: '2rem' }}
+                        onChange={(e) => poisk(e)}
+                      />
+                    </Form>
+                    <Link to="/account" className="navbar-nav nav-link">
+                      Выйти
                     </Link>
                   </Route>
                 </Switch>

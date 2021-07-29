@@ -110,11 +110,11 @@ export default function Deck({ deck }: { deck: DeckType }) {
           </ListGroupItem>
           <ListGroupItem className='statusDeck'>
             {deck.private ? 
-          <Badge pill bg="secondary" onClick={deckStatus}>
+          <Badge pill bg="secondary" style={{cursor:"pointer"}} onClick={deckStatus}>
           Приватная колода
           </Badge>
            :
-            <Badge pill bg="primary" onClick={deckStatus}>
+            <Badge pill bg="primary" style={{cursor:"pointer"}} onClick={deckStatus}>
              Публичная колода
            </Badge>
             }

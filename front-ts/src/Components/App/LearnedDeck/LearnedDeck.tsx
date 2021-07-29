@@ -21,14 +21,10 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
 
   // почему не работает setCardsInGame?
   useEffect(() => {
-    // console.log('newCardsMode:', newCardsMode);
-    // console.log('cardsInGame1:', cardsInGame);
-    // console.log('deckInGame.notStarted:', deckInGame.notStarted);
+
     if (newCardsMode) {
-      // console.log('if=====');
       setCardsInGame(deckInGame.notStarted);
     }
-    // console.log('cardsInGame2:', cardsInGame);
   }, [newCardsMode, cardsInGame, deckInGame]);
 
   const resultOfAnswerHandler = (
@@ -56,9 +52,6 @@ export default function LearnedDeck({ deckInGame }: { deckInGame: DeckType }) {
       setNewCardsMode(true);
       setPosition(0);
     }
-    // console.log('newCardsMode:', newCardsMode);
-    // console.log('position:', position);
-    // console.log('cardsInGame:', cardsInGame);
   }, [position, cardsInGame, history, newCardsMode, deckInGame]);
 
   return (
