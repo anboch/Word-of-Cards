@@ -8,13 +8,15 @@ const router = require('express').Router();
 // Новая колода
 // isLogin добавить!
 router.route('/new').post(async (req, res) => {
-  const { title, private } = req.body;
+  const { title,private} = req.body;
+  
   try {
     const newDeck = await Deck.create({
       title,
       private,
-      userId: req.session.userId,
+      userId: req.session.user._id,
     });
+    console.log(newDeck)
     return res.json({ newDeck });
   } catch (error) {
     res.status(500).json({ error });
@@ -23,20 +25,20 @@ router.route('/new').post(async (req, res) => {
 
 // Новая карта
 // isLogin добавить!
-router.route('/newCard').post(async (req, res) => {
-  const { _id, card } = req.body;
-  try {
-    const deck = await Deck.find({ _id });
-    if (deck.userId === req.session.userId) {
-      const newCard = new Card();
-      deck.cards.push(newCard);
-      await deck.save();
-      return res.json({ deck });
-    }
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-});
+// router.route('/newCard').post(async (req, res) => {
+//   const { _id, card } = req.body;
+//   try {
+//     const deck = await Deck.find({ _id });
+//     if (deck.userId === req.session.userId) {
+//       const newCard = new Card();
+//       deck.cards.push(newCard);
+//       await deck.save();
+//       return res.json({ deck });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error });
+//   }
+// });
 
 // Показать все доски юзера
 // isLogin добавить!
@@ -128,5 +130,19 @@ router.route('/renameTitle').post(async (req, res) => {
     res.status(500).json({ error });
   }
 });
+
+router.route('/status').post(async (req, res) => {
+  const { deckId } = req.body;
+  try {
+    const deck = await Deck.findOne({ _id:deckId });
+    deck.private = !deck.private
+    deck.save()
+    console.log(deck.private)
+    res.status(200).json(deck)
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 
 module.exports = router;

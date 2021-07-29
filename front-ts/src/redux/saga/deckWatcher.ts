@@ -5,13 +5,17 @@ import {
 } from '../ActionCreators/deck/downloadDeckAC';
 import { getDeckFetch, getDeckAC } from '../ActionCreators/deck/getDeckAC';
 import { DeckActionTypes } from '../types/deck/deckActionTypes';
-import { saveEditDeckFetch } from '../../redux/saga/fetch/fetchSaveEditDeck';
-import { saveEditDeckAC } from '../ActionCreators/deck/saveEditDeckAC';
+import {saveEditDeckFetch} from '../../redux/saga/fetch/fetchSaveEditDeck'
+import {saveEditDeckAC} from '../ActionCreators/deck/saveEditDeckAC'
+import {fetchStatusDeckSaga} from '../saga/fetch/fetchStatusDeckSaga'
+import {deckStatusAC} from '../ActionCreators/deck/deckStatusSagaAC'
 import {
   getPublicDecksAC,
   getPublicDecksFetch,
 } from '../ActionCreators/deck/getPublicDecksSagaAC';
 import { copyDeckAC, copyDeckFetch } from '../ActionCreators/deck/copyDeckAC';
+import {fetchAddDeckSaga} from '../saga/fetch/fetchAddDeckSaga'
+import {addDeckAC} from '../ActionCreators/deck/addDeckAC'
 
 function* downloadDecksWorker() {
   try {
@@ -53,7 +57,6 @@ function* getDeckWorker(action: { type: DeckActionTypes; payload: string }) {
     yield put({ type: 'ERROR', message: e.message });
   }
 }
-
 function* copyDeckWorker(action: { type: DeckActionTypes; payload: string }) {
   try {
     const { copiedDeck } = yield call(copyDeckFetch, action.payload);
@@ -63,13 +66,38 @@ function* copyDeckWorker(action: { type: DeckActionTypes; payload: string }) {
   }
 }
 
+function* statusDeckWorker(action:{
+  type: string;
+  payload: string
+}) {
+  try {
+     yield call(fetchStatusDeckSaga,action.payload);
+    yield put(  deckStatusAC (action.payload));
+  } catch (e) {
+    yield put({ type: 'ERROR', message: e.message });
+  }
+}
+
+//add Deck
+function* addDeckWorker(action:{
+  type: string;
+  payload: string
+}) {
+  try {
+    const {newDeck} =  yield call(fetchAddDeckSaga,action.payload);
+     
+    yield put(  addDeckAC (newDeck));
+  } catch (e) {
+    yield put({ type: 'ERROR', message: e.message });
+  }
+}
+
 export function* deckWatcher() {
   yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
-  yield takeEvery<DeckActionTypes>(
-    'GET_PUBLIC_DECKS_SAGA',
-    getPublicDecksWorker
-  );
+  yield takeEvery<DeckActionTypes>( 'GET_PUBLIC_DECKS_SAGA',getPublicDecksWorker);
   yield takeEvery('SAVE_RENAME_DECK_SAGA', saveEditDeckWorker);
   yield takeEvery('GET_DECK_SAGA', getDeckWorker);
+  yield takeEvery('STATUS_DECK_SAGA', statusDeckWorker);
   yield takeEvery('COPY_DECK_SAGA', copyDeckWorker);
+  yield takeEvery('ADD_DECK_SAGA', addDeckWorker);
 }

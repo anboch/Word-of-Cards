@@ -70,7 +70,7 @@ export default function Navibar() {
                     <Link to="/public" className="navbar-nav nav-link">
                       Публичные колоды
                     </Link>
-                    <Link to="/login" className="navbar-nav nav-link">
+                    <Link to="/newDeck" className="navbar-nav nav-link">
                       Создать колоду
                     </Link>
                     <Link to="/logout" className="navbar-nav nav-link">
@@ -94,7 +94,7 @@ export default function Navibar() {
                         aria-label="Search"
                         style={{ marginRight: '2rem' }}
                       />
-                      {/* <Button variant="outline-success">Поиск</Button> */}
+                    
                     </Form>
                     <Link to="/account" className="navbar-nav nav-link">
                       Мои колоды

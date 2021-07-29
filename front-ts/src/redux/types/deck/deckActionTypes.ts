@@ -1,27 +1,16 @@
 import { CardType } from '../card/cardTypes';
 import { AllDecksType, EditedDeck, DeckType } from './deckTypes';
-export type DeckActionTypes =
-  | 'DOWNLOAD_DECKS'
-  | 'DOWNLOAD_DECKS_SAGA'
-  | 'GET_PUBLIC_DECKS'
-  | 'GET_PUBLIC_DECKS_SAGA'
-  | 'COPY_DECK'
-  | 'COPY_DECK_SAGA'
-  | 'THIS_DECK'
-  | 'THIS_DECK_SAGA'
-  | 'RENAME_TITLE_DECK'
-  | 'DELETE_CARD'
-  | 'SAVE_RENAME_DECK_SAGA'
-  | 'SAVE_RENAME_DECK'
-  | 'ADD_CARD'
-  | 'RENAME_CARD'
-  | 'RENAME_CARD_SAGA'
-  | 'DOWNLOAD_DECKS'
-  | 'DOWNLOAD_DECKS_SAGA'
-  | 'GET_DECK'
-  | 'GET_DECK_SAGA'
-  | 'SET_DECK_FOR_GAME'
-  | 'DELETE_CARD_SAGA';
+export type DeckActionTypes = 'DOWNLOAD_DECKS' | 'DOWNLOAD_DECKS_SAGA' 
+|'THIS_DECK'| 'THIS_DECK_SAGA' | 'RENAME_TITLE_DECK' |'DELETE_CARD' |'SAVE_RENAME_DECK_SAGA'
+|'SAVE_RENAME_DECK'|'ADD_CARD'|'RENAME_CARD'| 'RENAME_CARD_SAGA'
+| 'DOWNLOAD_DECKS'
+| 'DOWNLOAD_DECKS_SAGA'
+| 'GET_DECK'
+| 'GET_DECK_SAGA'
+| 'SET_DECK_FOR_GAME'|'DELETE_CARD_SAGA'|'STATUS_DECK_SAGA'|'STATUS_DECK'| 'GET_PUBLIC_DECKS'
+| 'GET_PUBLIC_DECKS_SAGA'
+| 'COPY_DECK'
+| 'COPY_DECK_SAGA'  | 'SET_DECK_FOR_GAME'|'ADD_DECK'|'ADD_DECK_SAGA'
 
 interface DeckAction {
   type: DeckActionTypes;
@@ -100,6 +89,26 @@ export interface SaveRenameDeckAction extends DeckAction {
   type: 'RENAME_TITLE_DECK';
   payload: string;
 }
+// status deck
+export interface StatusDeckSagaAction extends DeckAction {
+  type:'STATUS_DECK_SAGA';
+  payload:string
+}
+
+export interface StatusDeckAction extends DeckAction {
+  type:'STATUS_DECK';
+  payload:string
+}
+//add deck
+export interface AddDeckSagaAction extends DeckAction {
+  type:'ADD_DECK_SAGA';
+  payload:string
+}
+
+export interface AddDeckAction extends DeckAction {
+  type:'ADD_DECK';
+  payload:DeckType
+}
 // add card in deck
 export interface AddCardAction extends DeckAction {
   type: 'ADD_CARD';
@@ -139,25 +148,18 @@ export interface SetDeckForGameAction extends DeckAction {
   payload: DeckType;
 }
 
-export type DeckActions =
-  | DownloadDecksAction
-  | DownloadDecksSagaAction
-  | GetPublicDecksAction
-  | GetPublicDecksSagaAction
-  | CopyDeckAction
-  | CopyDeckSagaAction
-  | ThisDeckAction
-  | ThisDeckSagaAction
-  | RenameDeckAction
-  | DeleteCard
-  | SaveRenameDeckSagaAction
-  | SaveRenameDeckAction
-  | AddCardAction
-  | RenameCardAction
-  | RenameCardSagaAction
-  | DownloadDecksAction
-  | DownloadDecksSagaAction
-  | GetDeckAction
-  | GetDeckSagaAction
-  | SetDeckForGameAction
-  | DeleteCardSagaAction;
+export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction 
+|ThisDeckAction | ThisDeckSagaAction | RenameDeckAction |DeleteCard |SaveRenameDeckSagaAction
+|SaveRenameDeckAction|AddCardAction |RenameCardAction|RenameCardSagaAction
+| DownloadDecksAction
+| DownloadDecksSagaAction
+| GetDeckAction
+| GetDeckSagaAction
+| SetDeckForGameAction
+|DeleteCardSagaAction
+|StatusDeckAction
+|StatusDeckSagaAction| GetPublicDecksAction
+| GetPublicDecksSagaAction
+| CopyDeckAction
+| CopyDeckSagaAction|AddDeckAction
+|AddDeckSagaAction

@@ -79,10 +79,22 @@ export const deckReducer = (
         },
       };
     case 'GET_DECK':
-      const deckPayload: DeckType = action.payload;
-      return { ...deckReducer, deckInGame: deckPayload };
-    case 'SET_DECK_FOR_GAME':
-      return { ...deckReducer, deckInGame: action.payload };
+  const deckPayload: DeckType = action.payload;
+  return { ...deckReducer, deckInGame: deckPayload };
+case 'SET_DECK_FOR_GAME':
+  return { ...deckReducer, deckInGame: action.payload };
+  
+  case 'STATUS_DECK':
+    return { ...deckReducer, allDecks: deckReducer.allDecks.map(el => {
+      if(el._id == action.payload){
+        el.private = !el.private
+        return el
+      }else{
+        return el
+      }
+    })};
+    case 'ADD_DECK':
+      return {...deckReducer, allDecks:[...deckReducer.allDecks,action.payload]} ;
     default:
       return deckReducer;
   }
