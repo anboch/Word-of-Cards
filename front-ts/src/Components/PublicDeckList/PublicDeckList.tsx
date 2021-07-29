@@ -25,7 +25,6 @@ export default function PublicDeckList() {
           <PublicDeck key={deck._id} deck={deck} />
         ))}
       </Container>
-      <DeckList />
     </div>
   );
 }

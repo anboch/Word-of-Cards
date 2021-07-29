@@ -20,9 +20,7 @@ function Login() {
 
   const loginUser = (event: { login: string; password: string }) => {
     const login = event.login;
-    console.log('login:', login);
     const password = event.password;
-    console.log('password:', password);
     dispatch(loginUserSagaAC(login, password));
   };
   state.userReducer.user._id && /*playTrue()|| */ history.push('/account');
