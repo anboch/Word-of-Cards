@@ -14,6 +14,8 @@ import {
   getPublicDecksFetch,
 } from '../ActionCreators/deck/getPublicDecksSagaAC';
 import { copyDeckAC, copyDeckFetch } from '../ActionCreators/deck/copyDeckAC';
+import {fetchAddDeckSaga} from '../saga/fetch/fetchAddDeckSaga'
+import {addDeckAC} from '../ActionCreators/deck/addDeckAC'
 
 function* downloadDecksWorker() {
   try {
@@ -63,6 +65,7 @@ function* copyDeckWorker(action: { type: DeckActionTypes; payload: string }) {
     yield put({ type: 'ERROR', message: e.message });
   }
 }
+
 function* statusDeckWorker(action:{
   type: string;
   payload: string
@@ -75,11 +78,26 @@ function* statusDeckWorker(action:{
   }
 }
 
+//add Deck
+function* addDeckWorker(action:{
+  type: string;
+  payload: string
+}) {
+  try {
+    const {newDeck} =  yield call(fetchAddDeckSaga,action.payload);
+     
+    yield put(  addDeckAC (newDeck));
+  } catch (e) {
+    yield put({ type: 'ERROR', message: e.message });
+  }
+}
+
 export function* deckWatcher() {
   yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
-  // yield takeEvery<DeckActionTypes>( 'GET_PUBLIC_DECKS_SAGA',getPublicDecksWorker);
+  yield takeEvery<DeckActionTypes>( 'GET_PUBLIC_DECKS_SAGA',getPublicDecksWorker);
   yield takeEvery('SAVE_RENAME_DECK_SAGA', saveEditDeckWorker);
   yield takeEvery('GET_DECK_SAGA', getDeckWorker);
   yield takeEvery('STATUS_DECK_SAGA', statusDeckWorker);
   yield takeEvery('COPY_DECK_SAGA', copyDeckWorker);
+  yield takeEvery('ADD_DECK_SAGA', addDeckWorker);
 }

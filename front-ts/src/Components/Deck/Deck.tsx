@@ -65,12 +65,12 @@ export default function Deck({ deck }: { deck: DeckType }) {
                 color: '#198754',
               }}
             >
-              {deck.learned.length}
+              {deck.learned?.length}
             </span>{' '}
             из {deck.cards.length} выучено
           </ListGroupItem>
           <ListGroupItem>
-            {deck.notReadyToRepeat.length} на запоминании
+            {deck.notReadyToRepeat?.length} на запоминании
           </ListGroupItem>
           <ListGroupItem>
             <span
@@ -78,7 +78,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
                 color: '#0CCAF0',
               }}
             >
-              {deck.notStarted.length}
+              {deck.notStarted?.length}
             </span>{' '}
             новых
           </ListGroupItem>
@@ -88,7 +88,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
                 color: '#FFC107',
               }}
             >
-              {deck.readyToRepeat.length}
+              {deck.readyToRepeat?.length}
             </span>{' '}
             готовы к повторению
           </ListGroupItem>
@@ -96,32 +96,32 @@ export default function Deck({ deck }: { deck: DeckType }) {
             <ProgressBar>
               <ProgressBar
                 variant="success"
-                now={(deck.learned.length / deck.cards.length) * 100}
+                now={(deck.learned?.length / deck.cards.length) * 100}
               />
               <ProgressBar
                 variant="info"
-                now={(deck.notStarted.length / deck.cards.length) * 100}
+                now={(deck.notStarted?.length / deck.cards.length) * 100}
               />
               <ProgressBar
                 variant="warning"
-                now={(deck.readyToRepeat.length / deck.cards.length) * 100}
+                now={(deck.readyToRepeat?.length / deck.cards.length) * 100}
               />
             </ProgressBar>
           </ListGroupItem>
           <ListGroupItem className='statusDeck'>
             {deck.private ? 
-             <Badge pill bg="primary" onClick={deckStatus}>
+          <Badge pill bg="secondary" onClick={deckStatus}>
+          Приватная колода
+          </Badge>
+           :
+            <Badge pill bg="primary" onClick={deckStatus}>
              Публичная колода
            </Badge>
-           :
-               <Badge pill bg="secondary" onClick={deckStatus}>
-               Приватная колода
-             </Badge>
             }
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          {(deck.readyToRepeat.length > 0 || deck.notStarted.length > 0) && (
+          {(deck.readyToRepeat?.length > 0 || deck.notStarted?.length > 0) && (
             <Button variant="success" onClick={() => startGameHandler(deck)}>
               Учить
             </Button>

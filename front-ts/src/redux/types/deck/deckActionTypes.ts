@@ -10,7 +10,7 @@ export type DeckActionTypes = 'DOWNLOAD_DECKS' | 'DOWNLOAD_DECKS_SAGA'
 | 'SET_DECK_FOR_GAME'|'DELETE_CARD_SAGA'|'STATUS_DECK_SAGA'|'STATUS_DECK'| 'GET_PUBLIC_DECKS'
 | 'GET_PUBLIC_DECKS_SAGA'
 | 'COPY_DECK'
-| 'COPY_DECK_SAGA'  | 'SET_DECK_FOR_GAME'
+| 'COPY_DECK_SAGA'  | 'SET_DECK_FOR_GAME'|'ADD_DECK'|'ADD_DECK_SAGA'
 
 interface DeckAction {
   type: DeckActionTypes;
@@ -89,7 +89,7 @@ export interface SaveRenameDeckAction extends DeckAction {
   type: 'RENAME_TITLE_DECK';
   payload: string;
 }
-
+// status deck
 export interface StatusDeckSagaAction extends DeckAction {
   type:'STATUS_DECK_SAGA';
   payload:string
@@ -98,6 +98,16 @@ export interface StatusDeckSagaAction extends DeckAction {
 export interface StatusDeckAction extends DeckAction {
   type:'STATUS_DECK';
   payload:string
+}
+//add deck
+export interface AddDeckSagaAction extends DeckAction {
+  type:'ADD_DECK_SAGA';
+  payload:string
+}
+
+export interface AddDeckAction extends DeckAction {
+  type:'ADD_DECK';
+  payload:DeckType
 }
 // add card in deck
 export interface AddCardAction extends DeckAction {
@@ -151,4 +161,5 @@ export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction
 |StatusDeckSagaAction| GetPublicDecksAction
 | GetPublicDecksSagaAction
 | CopyDeckAction
-| CopyDeckSagaAction
+| CopyDeckSagaAction|AddDeckAction
+|AddDeckSagaAction

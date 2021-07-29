@@ -12,6 +12,7 @@ import { Container } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import Edit from '../Edit/Edit';
 import PublicDeckList from '../PublicDeckList/PublicDeckList';
+import NewDeck from '../NewDeck/NewDeck';
 
 function App() {
   return (
@@ -54,6 +55,10 @@ function App() {
 
           <Route exact path="/info">
             <Info />
+          </Route>
+
+          <Route exact path="/newDeck">
+            <NewDeck/>
           </Route>
         </Switch>
       </Container>

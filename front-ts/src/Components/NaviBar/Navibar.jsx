@@ -7,7 +7,7 @@ import {
   FormControl,
   Button,
 } from 'react-bootstrap';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 
 export default function Navibar() {
   return (
@@ -52,9 +52,9 @@ export default function Navibar() {
                       />
                       {/* <Button variant="outline-success">Поиск</Button> */}
                     </Form>
-                    <Nav.Link href="/public">Публичные колоды</Nav.Link>
-                    <Nav.Link href="/login">Создать колоду</Nav.Link>
-                    <Nav.Link href="/logout">Выход</Nav.Link>
+                    <Link to="/public">Публичные колоды</Link>
+                    <Link to="/newDeck">Создать колоду</Link>
+                    <Link to="/logout">Выход</Link>
                   </Route>
                   <Route exact path="/game">
                     <Nav.Link href="/account">Мои колоды</Nav.Link>

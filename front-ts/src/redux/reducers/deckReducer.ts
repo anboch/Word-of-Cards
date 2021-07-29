@@ -93,7 +93,8 @@ case 'SET_DECK_FOR_GAME':
         return el
       }
     })};
-
+    case 'ADD_DECK':
+      return {...deckReducer, allDecks:[...deckReducer.allDecks,action.payload]} ;
     default:
       return deckReducer;
   }
