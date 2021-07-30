@@ -11,7 +11,7 @@ export type DeckActionTypes = 'DOWNLOAD_DECKS' | 'DOWNLOAD_DECKS_SAGA'
 | 'GET_PUBLIC_DECKS_SAGA'
 | 'COPY_DECK'
 | 'COPY_DECK_SAGA'  | 'SET_DECK_FOR_GAME'|'ADD_DECK'|'ADD_DECK_SAGA'
-|'POISK_SAGA'|'POISK'
+|'POISK_SAGA'|'POISK'|'DELETE_DECK_SAGA'|'DELETE_DECK'
 
 interface DeckAction {
   type: DeckActionTypes;
@@ -120,6 +120,15 @@ export interface AddDeckAction extends DeckAction {
   type:'ADD_DECK';
   payload:DeckType
 }
+//delete deck
+export interface DelDeckSagaAction extends DeckAction {
+  type:'DELETE_DECK_SAGA';
+  payload:string
+}
+export interface DelDeckAction extends DeckAction {
+  type:'DELETE_DECK';
+  payload:string
+}
 // add card in deck
 export interface AddCardAction extends DeckAction {
   type: 'ADD_CARD';
@@ -176,3 +185,5 @@ export type DeckActions = DownloadDecksAction | DownloadDecksSagaAction
 |AddDeckSagaAction
 |PoiskSagaAction
 |PoiskAction
+|DelDeckSagaAction
+|DelDeckAction

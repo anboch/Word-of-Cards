@@ -97,6 +97,9 @@ case 'SET_DECK_FOR_GAME':
       return {...deckReducer, allDecks:[...deckReducer.allDecks,action.payload]} ;
       case 'POISK':
         return {...deckReducer,poisk:action.payload}
+        case 'DELETE_DECK':
+          return {...deckReducer, allDecks:deckReducer.allDecks
+            .filter(el => el._id !== action.payload)} ;
     default:
       return deckReducer;
   }
