@@ -137,11 +137,11 @@ export default function Deck({ deck }: { deck: DeckType }) {
           <Card.Body>
             {(deck.readyToRepeat?.length > 0 ||
               deck.notStarted?.length > 0) && 
-                <div className="instrument">
+                // <div className="instrument">
               <Button variant="success" onClick={() => startGameHandler(deck)}>
                 Учить
               </Button>
-            {' '}
+           <span> {' '}
             <img
               onClick={() => thisDeck(deck)}
               style={{ cursor: 'pointer', width: '40px', margin: '2px' }}
@@ -154,7 +154,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
               className="del"
               src="/del.jpg"
             />
-            </div>}
+            }
           </Card.Body>
         ) : (
           <div>
@@ -162,7 +162,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
               Вы деиствительно хотите удалить колоду?
             </h5>
             <div className="buttonDel">
-              <Button onClick={() => setDel(true)} variant="dark">
+              <Button onClick={() => setDel((pre)=>!pre)} variant="dark">
                 Отменить
               </Button>
               <Button onClick={() => delDeck(deck._id)} variant="danger">
