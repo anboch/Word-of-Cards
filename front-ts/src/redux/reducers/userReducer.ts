@@ -19,8 +19,9 @@ export const userReducer = (
       };
       return { ...userReducer, user: newUser };
     case 'LOGOUT':
-      return { ...userReducer, user: init };
+      console.log('-------------------------------------------');
 
+      return { ...userReducer, user: init };
     default:
       return userReducer;
   }

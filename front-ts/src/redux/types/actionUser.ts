@@ -4,4 +4,5 @@ export type ActionUserType =
   | 'ADD_USER_SAGA'
   | 'LOGIN_USER_SAGA'
   | 'LOGOUT_SAGA'
-  | 'LOGOUT';
+  | 'LOGOUT'
+  | 'CHANGE_TIME_SAGA';

@@ -47,6 +47,7 @@ function App() {
 
           <Route exact path="/account">
             <Account />
+            <Footer />
           </Route>
 
           <Route exact path="/public">
@@ -58,7 +59,7 @@ function App() {
           </Route>
 
           <Route exact path="/newDeck">
-            <NewDeck/>
+            <NewDeck />
           </Route>
         </Switch>
       </Container>

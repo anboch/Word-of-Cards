@@ -27,7 +27,7 @@ export default function Account() {
   return (
     <div className="glavDiv">
       <h3 className="d-flex justify-content-center animate__animated animate__zoomInUp">
-        Привет {state.userReducer.user.login.toUpperCase()}!
+        Привет {state.userReducer.user.login?.toUpperCase()}!
       </h3>
       <DeckList />
     </div>
