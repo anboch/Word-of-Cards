@@ -5,6 +5,7 @@ import { addUserAC } from '../ActionCreators/User/addUserAC';
 import { ActionUserType } from '../types/actionUser';
 import { logoutAC } from '../ActionCreators/User/logoutAC';
 import { fetchLogout } from './fetch/fetchLogout';
+import { fetchChangeTimeSaga } from './fetch/fetchChangeTimeSaga';
 //add user
 export function* workerAddUser(action: {
   type: string;
@@ -50,8 +51,21 @@ export function* workerLogout() {
   }
 }
 
+export function* workerChangeTime(action: {
+  type: string;
+  payload: { newDate: Date };
+}) {
+  try {
+    yield call(fetchChangeTimeSaga, action.payload);
+    // yield put(logoutAC());
+  } catch (e) {
+    yield put({ type: 'error', message: e.message });
+  }
+}
+
 export function* wotcher() {
   yield takeEvery('ADD_USER_SAGA', workerAddUser);
   yield takeEvery('LOGIN_USER_SAGA', workerLoginUser);
   yield takeEvery('LOGOUT_SAGA', workerLogout);
+  yield takeEvery('CHANGE_TIME_SAGA', workerChangeTime);
 }

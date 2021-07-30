@@ -26,6 +26,10 @@ deckSchema.statics.clusteringCardsByStatus = async function (userId) {
         if (!typeof lastAnswerDate === 'string') {
           lastAnswerDate = Date.parse(card.lastAnswerDate);
         }
+        // const daysOfPause = Math.floor(
+        //   (sessionTime - lastAnswerDate.getTime()) / (1000 * 60 * 60 * 24)
+        // );
+        // console.log('daysOfPause:', daysOfPause);
         const daysOfPause = Math.floor(
           (new Date().getTime() - lastAnswerDate.getTime()) /
             (1000 * 60 * 60 * 24)

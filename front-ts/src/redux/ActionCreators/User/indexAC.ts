@@ -32,10 +32,16 @@ export interface logoutSagaAction extends ActionUser {
   type: 'LOGOUT_SAGA';
 }
 
+export interface changeTimeSagaAction extends ActionUser {
+  type: 'CHANGE_TIME_SAGA';
+  payload: { newDate: Date };
+}
+
 export type ActionsUser =
   | loginUserAction
   | addUserAction
   | loginUserSagaAction
   | addUserSagaAction
   | logoutAction
-  | logoutSagaAction;
+  | logoutSagaAction
+  | changeTimeSagaAction;

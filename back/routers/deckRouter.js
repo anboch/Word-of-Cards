@@ -9,7 +9,7 @@ const router = require('express').Router();
 // Новая колода
 // isLogin добавить!
 router.route('/new').post(async (req, res) => {
-  const { title,private} = req.body;
+  const { title, private } = req.body;
   try {
     const newDeck = await Deck.create({
       title,
@@ -22,12 +22,11 @@ router.route('/new').post(async (req, res) => {
   }
 });
 
-
-
 // Показать все публичные доски
 // isLogin добавить!
 router.route('/allpublic').get(async (req, res) => {
   // try {
+  // console.log('req.session.user:', req.session.user);
   const allPublicDecks = await Deck.find({ private: false });
   if (req.session.user) {
     // отсортировать по лайкам!
@@ -37,7 +36,6 @@ router.route('/allpublic').get(async (req, res) => {
     const allPublicStrangeDecks = allPublicDecks.filter(
       (deck) => deck.userId != req.session.user._id
     );
-    console.log('allPublicStrangeDecks:', allPublicStrangeDecks);
     return res.json({ allPublicDecks: allPublicStrangeDecks });
   } else {
     return res.json({ allPublicDecks });
@@ -50,8 +48,13 @@ router.route('/allpublic').get(async (req, res) => {
 // Показать все доски юзера
 // isLogin добавить!
 router.route('/all').get(async (req, res) => {
+  // console.log('req.session.fakeTime2:', req.session);
+  // const daysOfPause = Math.floor(
+  //   (req.session.fakeTime - new Date().getTime()) / (1000 * 60 * 60 * 24)
+  // );
+  // console.log('daysOfPause1:', daysOfPause);
   try {
-    console.log('req.session.user._id:', req.session.user._id);
+    // console.log('req.session.user._id:', req.session.user._id);
     const userOwnerOfDeck = await User.findOne({ _id: req.session.user._id });
     const decksWithClusteredCards = await Deck.clusteringCardsByStatus(
       userOwnerOfDeck._id
@@ -71,7 +74,6 @@ router.route('/copy').post(isLogin, async (req, res) => {
   const { deckId } = req.body;
   try {
     const deckForCopy = await Deck.findOne({ _id: deckId });
-    console.log('deckForCopy:', deckForCopy);
     const withCreatStatisticCards = deckForCopy.cards.map((card) => {
       card._id = nanoid();
       card.levelOfStudy = 1;
@@ -97,8 +99,7 @@ router.route('/copy').post(isLogin, async (req, res) => {
 // isLogin добавить!
 router.route('/').post(async (req, res) => {
   try {
-    // заглушку убрать и заменить на req.session.user._id!
-    const userDecks = await Deck.find({ userId: '60fbe244a204e748dc39129c' });
+    const userDecks = await Deck.find({ userId: req.session.user._id });
     const deck = userDecks.find(
       (deck) => deck._id.toString() === req.body.deckId
     );
