@@ -47,7 +47,7 @@ function App() {
 
           <Route exact path="/account">
             <Account />
-            <Footer />
+            {/* <Footer /> */}
           </Route>
 
           <Route exact path="/public">
