@@ -6,7 +6,9 @@ import { AllDecksType } from '../../types/deck/deckTypes';
 const { REACT_APP_SERVER_URL } = process.env;
 
 export const downloadDeckFetch = async () => {
-  const req = await fetch(`${REACT_APP_SERVER_URL}deck/all`);
+  const req = await fetch(`${REACT_APP_SERVER_URL}deck/all`, {
+    credentials: 'include',
+  });
   const res = await req.json();
   if (req.status === 200) {
     return res;

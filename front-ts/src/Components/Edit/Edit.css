@@ -1,0 +1,33 @@
+.button {
+  margin: 2px 2px 2px 2px;
+}
+
+.addQuest {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.editButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.button2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.editDeck {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.listOfCards {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,18 @@
+.statusDeck{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.private {
+  background-color: deeppink;
+}
+.del{
+  margin-top: 3px;
+ width: 40px;
+ height: 41px;
+}
+.buttonDel{
+  display: flex;
+  justify-content: space-around;
+}
+
