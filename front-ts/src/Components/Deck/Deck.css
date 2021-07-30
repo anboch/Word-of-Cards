@@ -15,4 +15,8 @@
   display: flex;
   justify-content: space-around;
 }
-
+.instrument{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

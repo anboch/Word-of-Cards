@@ -136,11 +136,12 @@ export default function Deck({ deck }: { deck: DeckType }) {
         {del ? (
           <Card.Body>
             {(deck.readyToRepeat?.length > 0 ||
-              deck.notStarted?.length > 0) && (
+              deck.notStarted?.length > 0) && 
+                <div className="instrument">
               <Button variant="success" onClick={() => startGameHandler(deck)}>
                 Учить
               </Button>
-            )}{' '}
+            {' '}
             <img
               onClick={() => thisDeck(deck)}
               style={{ cursor: 'pointer', width: '40px', margin: '2px' }}
@@ -153,6 +154,7 @@ export default function Deck({ deck }: { deck: DeckType }) {
               className="del"
               src="/del.jpg"
             />
+            </div>}
           </Card.Body>
         ) : (
           <div>
