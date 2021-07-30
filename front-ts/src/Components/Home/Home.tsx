@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ PureComponent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Home.css';
 import useSound from 'use-sound';
