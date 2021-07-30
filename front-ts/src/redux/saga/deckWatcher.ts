@@ -16,6 +16,8 @@ import {
 import { copyDeckAC, copyDeckFetch } from '../ActionCreators/deck/copyDeckAC';
 import {fetchAddDeckSaga} from '../saga/fetch/fetchAddDeckSaga'
 import {addDeckAC} from '../ActionCreators/deck/addDeckAC'
+import {fetchDelDeckSaga} from '../saga/fetch/fetchDelDeckSaga'
+import {delDeckAC} from '../../redux/ActionCreators/deck/delDeckAC'
 
 function* downloadDecksWorker() {
   try {
@@ -91,6 +93,19 @@ function* addDeckWorker(action:{
     yield put({ type: 'ERROR', message: e.message });
   }
 }
+//del deck
+function* delDeckWorker(action:{
+  type: string;
+  payload: string
+}) {
+  try {
+    const {_id} =  yield call(fetchDelDeckSaga,action.payload);
+     console.log(_id)
+    yield put(delDeckAC (_id));
+  } catch (e) {
+    yield put({ type: 'ERROR', message: e.message });
+  }
+}
 
 export function* deckWatcher() {
   yield takeEvery<DeckActionTypes>('DOWNLOAD_DECKS_SAGA', downloadDecksWorker);
@@ -100,4 +115,5 @@ export function* deckWatcher() {
   yield takeEvery('STATUS_DECK_SAGA', statusDeckWorker);
   yield takeEvery('COPY_DECK_SAGA', copyDeckWorker);
   yield takeEvery('ADD_DECK_SAGA', addDeckWorker);
+  yield takeEvery('DELETE_DECK_SAGA', delDeckWorker);
 }
