@@ -1,4 +1,4 @@
-import React,{ PureComponent } from 'react';
+import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Home.css';
 import useSound from 'use-sound';
@@ -10,6 +10,12 @@ import { Button, Container } from 'react-bootstrap';
 // import musicGrom from '../../volue/mol.mp3'
 
 function Home() {
+  // const myRef = useRef(null);
+  // const executeScroll = () => {
+  //   if (myRef) {
+  //     myRef.current.scrollIntoView();
+  //   }
+  // };
   // const [playGrom] = useSound(
   //   musicGrom,
   //   { volume: 0.2 }
@@ -38,15 +44,20 @@ function Home() {
               >
                 Начать
               </Button>
-              <br />
-              <Button className="btnAdditionally" variant="secondary">
+              {/* <br />
+              <Button
+                // onClick={executeScroll}
+                className="btnAdditionally"
+                variant="secondary"
+              >
                 Подробнее
-              </Button>
+              </Button> */}
             </div>
             <div>
               <img className="bigLogo" src="/logoCards.png" alt="" />
             </div>
           </div>
+          {/* ref={myRef} */}
           <div className="advantages">
             <div className="advantage">
               <img className="advantageImg" src="/list.svg" alt="" />
