@@ -1,4 +1,7 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { poiskSagakAC } from '../../redux/ActionCreators/deck/poiskAC';
+import { logoutSagaAC } from '../../redux/ActionCreators/User/logoutAC';
 import {
   Navbar,
   Container,
@@ -7,20 +10,24 @@ import {
   FormControl,
   Button,
 } from 'react-bootstrap';
-import { Route, Switch, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import {poiskSagakAC} from '../../redux/ActionCreators/deck/poiskAC'
+import { Route, Switch, Link, useHistory } from 'react-router-dom';
 
 export default function Navibar() {
-  const dispatch = useDispatch()
-  const [poiskDeck,setPoiskDeck] = useState('')
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [poiskDeck, setPoiskDeck] = useState('');
 
-  const poisk = (e) =>{
-  // dispatch(poiskSagakAC(e.target.value))
-  dispatch({type:'POISK',payload:e.target.value})
+  const poisk = (e) => {
+    // dispatch(poiskSagakAC(e.target.value))
+    dispatch({ type: 'POISK', payload: e.target.value });
+  };
 
-  }
-
+  const logoutHandler = () => {
+    dispatch(logoutSagaAC());
+    document.cookie =
+      'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    // history.push('/');
+  };
 
   return (
     <>
@@ -78,7 +85,6 @@ export default function Navibar() {
                         style={{ marginRight: '2rem' }}
                         onChange={(e) => poisk(e)}
                       />
-                     
                     </Form>
                     <Link to="/public" className="navbar-nav nav-link">
                       Публичные колоды
@@ -86,7 +92,11 @@ export default function Navibar() {
                     <Link to="/newDeck" className="navbar-nav nav-link">
                       Создать колоду
                     </Link>
-                    <Link to="/" className="navbar-nav nav-link">
+                    <Link
+                      to="/"
+                      onClick={logoutHandler}
+                      className="navbar-nav nav-link"
+                    >
                       Выход
                     </Link>
                   </Route>
@@ -94,7 +104,10 @@ export default function Navibar() {
                     <Link to="/account" className="navbar-nav nav-link">
                       Мои колоды
                     </Link>
-                    <Link to="/logout" className="navbar-nav nav-link">
+                    <Link
+                      onClick={logoutHandler}
+                      className="navbar-nav nav-link"
+                    >
                       Выход
                     </Link>
                   </Route>
@@ -108,17 +121,19 @@ export default function Navibar() {
                         style={{ marginRight: '2rem' }}
                         onChange={(e) => poisk(e)}
                       />
-                    
                     </Form>
                     <Link to="/account" className="navbar-nav nav-link">
                       Мои колоды
                     </Link>
-                    <Link to="/logout" className="navbar-nav nav-link">
+                    <Link
+                      onClick={logoutHandler}
+                      className="navbar-nav nav-link"
+                    >
                       Выход
                     </Link>
                   </Route>
-                  <Route exact path='/edit'>
-                  <Form className="d-flex">
+                  <Route exact path="/edit">
+                    <Form className="d-flex">
                       <FormControl
                         type="search"
                         placeholder="🔍︎ Поиск "
@@ -127,10 +142,9 @@ export default function Navibar() {
                         style={{ marginRight: '2rem' }}
                         onChange={(e) => poisk(e)}
                       />
-                    
                     </Form>
-                  <Link to="/account" className="navbar-nav nav-link">
-                      Выйти
+                    <Link to="/account" className="navbar-nav nav-link">
+                      Мои колоды
                     </Link>
                   </Route>
                 </Switch>

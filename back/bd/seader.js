@@ -7,7 +7,7 @@ const { nanoid } = require('nanoid');
 const seader = async (folder) => {
   // const folder = './bd/cards';
   const readDirSync = fs.readdirSync(folder);
-  const userOwnerOfDeck = await User.findOne({ login: 'Andrey' });
+  const userOwnerOfDeck = await User.findOne({ login: 'mouse' });
   for (let fileName of readDirSync) {
     const newDeck = new Deck({
       title: fileName.split('.')[0],

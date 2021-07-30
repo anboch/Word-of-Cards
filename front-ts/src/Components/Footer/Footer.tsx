@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <div>
-      <Navbar fixed="bottom">
+      <Navbar>
         <Container className="d-flex justify-content-center">
           <Navbar.Text
             onDoubleClick={() => setShowDateChanger((pre) => !pre)}

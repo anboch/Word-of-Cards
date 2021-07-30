@@ -16,8 +16,12 @@ export default function Deck({ deck }: { deck: DeckType }) {
 
   const deckId = deck._id;
   const copyDeck = (deckId: string) => {
-    dispatch({ type: 'COPY_DECK_SAGA', payload: deckId });
-    setdisabelAddBtn(true);
+    if (!state.userReducer.user._id) {
+      history.push('/login');
+    } else {
+      dispatch({ type: 'COPY_DECK_SAGA', payload: deckId });
+      setdisabelAddBtn(true);
+    }
   };
 
   return (

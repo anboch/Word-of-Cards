@@ -1,0 +1,63 @@
+die Mahlzeit	еда/прием пищи
+das Frühstück	завтрак
+die Brotzeit	полдник
+die Zwischenmahlzeit	промежуточный прием пищи/перекус/полдник
+das Mittagessen	обед
+das Abendessen	ужин
+essen = speisen	кушать, питаться
+frühstücken	завтракать
+zu Mittag essen = zu Mittag speisen	обедать
+zu Abend essen = zu Abend speisen	ужинать
+Guten Appetit! / Mahlzeit! Guten Hunger! (говорят шутливо)	приятного аппетита
+hungrig	голодный
+durstig	испытывающий жажду
+Hunger haben	быть голодным (иметь голод)
+keinen Hunger haben	не быть голодным
+Durst haben	хотеть пить
+keinen Durst haben	не хотеть пить
+Ich habe großen Hunger	Я очень голоден (голодна)!
+Ich habe einen Riesenhunger	Я страшно голоден! Я сильно голоден!
+Ich habe einen Bärenhunger	Я голоден, как волк! (!не как медведь!)
+Ich möchte etwas essen!	Я хотел бы что-нибудь покушать!
+Hast du etwas zum Knabbern? = Hast du etwas zum Naschen?	У тебя есть что пожевать? У тебя есть чем полакомиться?
+ein Feinschmecker sein	быть гурманом
+ein Leckermaul sein	быть лакомкой
+eine Naschkatze sein	быть лакомкой/сластеной/чревоугодником
+die Speisekarte	меню
+die Suppen	супы
+die Süßspeise	сладкое
+das Dessert	дессерт
+das Fleischgericht	мясное блюдо
+die Getränke	напитки
+die Vorspeisen	закуски
+die Hauptspeisen	главные блюда
+Pizza	пицца
+der Braten	жаркое
+die Brühe	бульон
+das Filet	филе
+das Gulasch	гуляш
+das Hackfleisch	фарш
+die Kartoffeln (Pl.)	картофель (во мн.ч)
+die Knödel (Pl.)	клецки (мн.ч)
+das Kotelett	отбивная котлета
+die Nudeln (Pl.)	макароны/лапша
+das Omelett	омлет
+der Pfannkuchen	так называют немцы “блинчик”=)
+die Pommes frites (Pl.)	картошка фри (мн.ч)
+der Reis	рис
+der Salat	салат
+das Schnitzel	шницель
+die Suppe	суп
+die Teigtaschen (Pl.)	пельмени (мн.ч)
+die Wurst	колбаса
+das Obst	фрукты
+das Gemüse	овощи
+die Currywurst	сосиска с пряным соусом “карри”
+der Schrimp\die Shrimps	креветка
+gebacken	печеный
+gebraten	жареный
+gekocht	вареный
+gefüllt	с начинкой/фаршированный
+gegrillt	сделанный на гриле
+in Öl	в масле
+in Soße (Sauce)	в соусе
