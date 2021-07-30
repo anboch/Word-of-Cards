@@ -54,7 +54,7 @@ function Card({ card }: { card: any }) {
           </button>
           <button
             type="button"
-            className="button btn btn-dark"
+            className="button btn btn-danger"
             onClick={() =>
               deleteCard(state.deckReducer.editedDeck._id, card._id)
             }
